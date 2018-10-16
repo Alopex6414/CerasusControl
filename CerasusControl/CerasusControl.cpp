@@ -232,3 +232,39 @@ bool CERASUSCONTROL_CALLMODE CCerasusControl::GetEnabled()
 {
 	return m_bEnabled;
 }
+
+//------------------------------------------------------------------
+// @Function:	 SetVisible()
+// @Purpose: CCerasusControl设置控件可见
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+void CERASUSCONTROL_CALLMODE CCerasusControl::SetVisible(bool bVisible)
+{
+	m_bVisible = bVisible;
+}
+
+//------------------------------------------------------------------
+// @Function:	 GetVisible()
+// @Purpose: CCerasusControl获取控件可见
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+bool CERASUSCONTROL_CALLMODE CCerasusControl::GetVisible()
+{
+	return m_bVisible;
+}
+
+//------------------------------------------------------------------
+// @Function:	 GetType()
+// @Purpose: CCerasusControl获取类型
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+UINT CERASUSCONTROL_CALLMODE CCerasusControl::GetType() const
+{
+	return m_eType;
+}

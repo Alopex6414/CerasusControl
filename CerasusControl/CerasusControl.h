@@ -79,6 +79,9 @@ public:
 	virtual BOOL	CERASUSCONTROL_CALLMODE ContainsPoint(POINT pt);	// CCerasusControl 鼠标落在控件内
 	virtual void	CERASUSCONTROL_CALLMODE SetEnabled(bool bEnabled);	// CCerasusControl 设置控件使能
 	virtual bool	CERASUSCONTROL_CALLMODE GetEnabled();				// CCerasusControl 获取控件使能
+	virtual void	CERASUSCONTROL_CALLMODE SetVisible(bool bVisible);	// CCerasusControl 设置控件可见
+	virtual bool	CERASUSCONTROL_CALLMODE GetVisible();				// CCerasusControl 获取控件可见
+	UINT			CERASUSCONTROL_CALLMODE GetType() const;			// CCerasusControl 获取控件类型
 
 };
 

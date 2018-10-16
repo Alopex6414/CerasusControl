@@ -73,6 +73,10 @@ public:
 	virtual bool	CERASUSCONTROL_CALLMODE	CanHaveFocus();				// CCerasusControl 是否拥有焦点
 	virtual void	CERASUSCONTROL_CALLMODE	OnFocusIn();				// CCerasusControl 设置焦点
 	virtual void	CERASUSCONTROL_CALLMODE	OnFocusOut();				// CCerasusControl 丢失焦点
+	virtual void	CERASUSCONTROL_CALLMODE	OnMouseEnter();				// CCerasusControl 鼠标进入
+	virtual void	CERASUSCONTROL_CALLMODE OnMouseLeave();				// CCerasusControl 鼠标离开
+	virtual void	CERASUSCONTROL_CALLMODE OnHotkey();					// CCerasusControl 鼠标热键
+	virtual BOOL	CERASUSCONTROL_CALLMODE ContainsPoint(POINT pt);	// CCerasusControl 鼠标落在控件内
 
 };
 

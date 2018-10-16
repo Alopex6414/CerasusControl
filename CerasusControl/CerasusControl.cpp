@@ -160,3 +160,51 @@ void CERASUSCONTROL_CALLMODE CCerasusControl::OnFocusOut()
 {
 	m_bHasFocus = false;
 }
+
+//------------------------------------------------------------------
+// @Function:	 OnMouseEnter()
+// @Purpose: CCerasusControl鼠标进入
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+void CERASUSCONTROL_CALLMODE CCerasusControl::OnMouseEnter()
+{
+	m_bMouseOver = true;
+}
+
+//------------------------------------------------------------------
+// @Function:	 OnMouseLeave()
+// @Purpose: CCerasusControl鼠标离开
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+void CERASUSCONTROL_CALLMODE CCerasusControl::OnMouseLeave()
+{
+	m_bMouseOver = false;
+}
+
+//------------------------------------------------------------------
+// @Function:	 OnHotkey()
+// @Purpose: CCerasusControl鼠标进入
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+void CERASUSCONTROL_CALLMODE CCerasusControl::OnHotkey()
+{
+	
+}
+
+//------------------------------------------------------------------
+// @Function:	 ContainsPoint()
+// @Purpose: CCerasusControl鼠标落在控件内
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+BOOL CERASUSCONTROL_CALLMODE CCerasusControl::ContainsPoint(POINT pt)
+{
+	return PtInRect(&m_rcBoundingBox, pt);
+}

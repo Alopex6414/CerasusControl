@@ -124,3 +124,39 @@ bool CERASUSCONTROL_CALLMODE CCerasusControl::HandleMouse(UINT uMsg, WPARAM wPar
 {
 	return false;
 }
+
+//------------------------------------------------------------------
+// @Function:	 CanHaveFocus()
+// @Purpose: CCerasusControl是否获取焦点
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+bool CERASUSCONTROL_CALLMODE CCerasusControl::CanHaveFocus()
+{
+	return false;
+}
+
+//------------------------------------------------------------------
+// @Function:	 OnFocusIn()
+// @Purpose: CCerasusControl设置焦点
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+void CERASUSCONTROL_CALLMODE CCerasusControl::OnFocusIn()
+{
+	m_bHasFocus = true;
+}
+
+//------------------------------------------------------------------
+// @Function:	 OnFocusOut()
+// @Purpose: CCerasusControl丢失焦点
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+void CERASUSCONTROL_CALLMODE CCerasusControl::OnFocusOut()
+{
+	m_bHasFocus = false;
+}

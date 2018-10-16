@@ -208,3 +208,27 @@ BOOL CERASUSCONTROL_CALLMODE CCerasusControl::ContainsPoint(POINT pt)
 {
 	return PtInRect(&m_rcBoundingBox, pt);
 }
+
+//------------------------------------------------------------------
+// @Function:	 SetEnabled()
+// @Purpose: CCerasusControl设置控件使能
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+void CERASUSCONTROL_CALLMODE CCerasusControl::SetEnabled(bool bEnabled)
+{
+	m_bEnabled = bEnabled;
+}
+
+//------------------------------------------------------------------
+// @Function:	 GetEnabled()
+// @Purpose: CCerasusControl获取控件使能
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+bool CERASUSCONTROL_CALLMODE CCerasusControl::GetEnabled()
+{
+	return m_bEnabled;
+}

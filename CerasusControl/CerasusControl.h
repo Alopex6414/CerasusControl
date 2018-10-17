@@ -71,7 +71,7 @@ public:
 
 	virtual bool	CERASUSCONTROL_CALLMODE MsgProc(UINT uMsg, WPARAM wParam, LPARAM lParam);			// CCerasusControl 消息处理
 	virtual bool	CERASUSCONTROL_CALLMODE HandleKeyboard(UINT uMsg, WPARAM wParam, LPARAM lParam);	// CCerasusControl 键盘消息处理
-	virtual bool	CERASUSCONTROL_CALLMODE HandleMouse(UINT uMsg, WPARAM wParam, LPARAM lParam);		// CCerasusControl 鼠标消息处理
+	virtual bool	CERASUSCONTROL_CALLMODE HandleMouse(UINT uMsg, POINT pt, WPARAM wParam, LPARAM lParam);		// CCerasusControl 鼠标消息处理
 
 	virtual bool	CERASUSCONTROL_CALLMODE	CanHaveFocus();				// CCerasusControl 是否拥有焦点
 	virtual void	CERASUSCONTROL_CALLMODE	OnFocusIn();				// CCerasusControl 设置焦点

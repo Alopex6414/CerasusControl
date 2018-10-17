@@ -120,7 +120,7 @@ bool CERASUSCONTROL_CALLMODE CCerasusControl::HandleKeyboard(UINT uMsg, WPARAM w
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-bool CERASUSCONTROL_CALLMODE CCerasusControl::HandleMouse(UINT uMsg, WPARAM wParam, LPARAM lParam)
+bool CERASUSCONTROL_CALLMODE CCerasusControl::HandleMouse(UINT uMsg, POINT pt, WPARAM wParam, LPARAM lParam)
 {
 	return false;
 }

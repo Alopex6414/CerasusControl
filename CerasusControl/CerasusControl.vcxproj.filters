@@ -33,6 +33,9 @@
     <ClInclude Include="CerasusUICommon.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="CerasusGrowArray.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CerasusControl.cpp">
@@ -45,6 +48,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="DirectThreadSafe.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CerasusGrowArray.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

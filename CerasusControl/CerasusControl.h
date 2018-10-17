@@ -3,24 +3,19 @@
 *     Copyright(c) 2018, Team Shanghai Dream Equinox
 *     All rights reserved.
 *
-* @file		CreasusControl.h
-* @brief	This File is CreasusControl DLL Project.
+* @file		CerasusControl.h
+* @brief	This File is CerasusControl DLL Project.
 * @author	Alopex/Helium
 * @version	v1.00a
 * @date		2018-10-16	v1.00a	alopex	Create Project.
 */
 #pragma once
 
-#ifndef __CREASUSCONTROL_H_
-#define __CREASUSCONTROL_H_
+#ifndef __CERASUSCONTROL_H_
+#define __CERASUSCONTROL_H_
 
-//Include Direct Common Header File
-#include "DirectCommon.h"
-#include "DirectGraphics3D.h"
-#include "DirectThreadSafe.h"
-
+//Include CerasusUI Common Header File
 #include "CerasusUICommon.h"
-#include "CerasusUnit.h"
 
 //Macro Definition
 #ifdef	CERASUSCONTROL_EXPORTS
@@ -97,5 +92,5 @@ public:
 };
 
 
-#endif // !__CREASUSCONTROL_H_
+#endif // !__CERASUSCONTROL_H_
 

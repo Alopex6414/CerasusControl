@@ -3,7 +3,7 @@
 *     Copyright(c) 2018, Team Shanghai Dream Equinox
 *     All rights reserved.
 *
-* @file		CreasusUICommon.h
+* @file		CerasusUICommon.h
 * @brief	This File is CreasusUI Common Header File.
 * @author	alopex
 * @version	v1.00a
@@ -11,8 +11,18 @@
 */
 #pragma once
 
-#ifndef __CREASUSUICOMMON_H_
-#define __CREASUSUICOMMON_H_
+#ifndef __CERASUSUICOMMON_H_
+#define __CERASUSUICOMMON_H_
+
+//Include Direct Common Header File
+#include "DirectCommon.h"
+#include "DirectGraphics3D.h"
+#include "DirectThreadSafe.h"
+
+#include "CerasusUnit.h"
+
+//Macro Definition
+#define MAX_CONTROL_STATES 6
 
 //Enum Definition
 enum CERASUS_CONTROL_TYPE
@@ -29,5 +39,15 @@ enum CERASUS_CONTROL_TYPE
 	CERASUS_CONTROL_SCROLLBAR,
 };
 
-#endif // !__CREASUSUICOMMON_H_
+enum CERASUS_CONTROL_STATE
+{
+	CERASUS_STATE_NORMAL,
+	CERASUS_STATE_DISABLED,
+	CERASUS_STATE_HIDDEN,
+	CERASUS_STATE_FOCUS,
+	CERASUS_STATE_MOUSEOVER,
+	CERASUS_STATE_PRESSED,
+};
+
+#endif // !__CERASUSUICOMMON_H_
 

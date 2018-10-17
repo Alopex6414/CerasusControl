@@ -131,6 +131,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CerasusControl.h" />
+    <ClInclude Include="CerasusGrowArray.h" />
     <ClInclude Include="CerasusUICommon.h" />
     <ClInclude Include="CerasusUnit.h" />
     <ClInclude Include="DirectCommon.h" />
@@ -139,6 +140,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CerasusControl.cpp" />
+    <ClCompile Include="CerasusGrowArray.cpp" />
     <ClCompile Include="CerasusUnit.cpp" />
     <ClCompile Include="DirectGraphics3D.cpp" />
     <ClCompile Include="DirectThreadSafe.cpp" />

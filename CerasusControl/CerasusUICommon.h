@@ -20,6 +20,8 @@
 #include "DirectThreadSafe.h"
 
 #include "CerasusUnit.h"
+#include "CerasusElement.h"
+#include "CerasusGrowArray.h"
 
 //Macro Definition
 #define MAX_CONTROL_STATES 6

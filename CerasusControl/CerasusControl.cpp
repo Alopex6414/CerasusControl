@@ -292,3 +292,91 @@ void CERASUSCONTROL_CALLMODE CCerasusControl::SetID(int nID)
 {
 	m_nID = nID;
 }
+
+//------------------------------------------------------------------
+// @Function:	 SetLocation()
+// @Purpose: CCerasusControl设置控件坐标
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+void CERASUSCONTROL_CALLMODE CCerasusControl::SetLocation(int x, int y)
+{
+	m_nX = x;
+	m_nY = y;
+	UpdateRects();
+}
+
+//------------------------------------------------------------------
+// @Function:	 SetSize()
+// @Purpose: CCerasusControl设置控件形状
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+void CERASUSCONTROL_CALLMODE CCerasusControl::SetSize(int width, int height)
+{
+	m_nWidth = width;
+	m_nHeight = height;
+	UpdateRects();
+}
+
+//------------------------------------------------------------------
+// @Function:	 SetHotkey()
+// @Purpose: CCerasusControl设置虚拟键值
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+void CERASUSCONTROL_CALLMODE CCerasusControl::SetHotkey(UINT nHotkey)
+{
+	m_nHotkey = nHotkey;
+}
+
+//------------------------------------------------------------------
+// @Function:	 GetHotkey()
+// @Purpose: CCerasusControl获取虚拟键值
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+UINT CERASUSCONTROL_CALLMODE CCerasusControl::GetHotkey()
+{
+	return m_nHotkey;
+}
+
+//------------------------------------------------------------------
+// @Function:	 SetUserData()
+// @Purpose: CCerasusControl设置用户数据
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+void CERASUSCONTROL_CALLMODE CCerasusControl::SetUserData(void * pUserData)
+{
+	m_pUserData = pUserData;
+}
+
+//------------------------------------------------------------------
+// @Function:	 GetUserData()
+// @Purpose: CCerasusControl获取用户数据
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+void *CERASUSCONTROL_CALLMODE CCerasusControl::GetUserData()
+{
+	return m_pUserData;
+}
+
+//------------------------------------------------------------------
+// @Function:	 UpdateRects()
+// @Purpose: CCerasusControl更新控件矩形
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+void CERASUSCONTROL_CALLMODE CCerasusControl::UpdateRects()
+{
+	SetRect(&m_rcBoundingBox, m_nX, m_nY, m_nX + m_nWidth, m_nY + m_nHeight);
+}

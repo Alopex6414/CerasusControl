@@ -58,6 +58,9 @@ protected:
 	bool m_bEnabled;				// CCerasusControl 控件是否使能(true:是/false:否)
 	RECT m_rcBoundingBox;			// CCerasusControl 控件使能区域
 
+protected:
+	virtual void	CERASUSCONTROL_CALLMODE UpdateRects();				// CCerasusControl 更新控件矩形
+
 public:
 	CCerasusControl();				// CCerasusControl 构造函数
 	virtual ~CCerasusControl();		// CCerasusControl 析构函数
@@ -84,6 +87,12 @@ public:
 	UINT			CERASUSCONTROL_CALLMODE GetType() const;			// CCerasusControl 获取控件类型
 	int				CERASUSCONTROL_CALLMODE GetID() const;				// CCerasusControl 获取控件ID
 	void			CERASUSCONTROL_CALLMODE SetID(int nID);				// CCerasusControl 设置控件ID
+	void			CERASUSCONTROL_CALLMODE SetLocation(int x, int y);	// CCerasusControl 设置控件坐标
+	void			CERASUSCONTROL_CALLMODE SetSize(int width, int height);			// CCerasusControl 设置控件形状
+	void			CERASUSCONTROL_CALLMODE SetHotkey(UINT nHotkey);	// CCerasusControl 设置虚拟键值
+	UINT			CERASUSCONTROL_CALLMODE GetHotkey();				// CCerasusControl 获取虚拟键值
+	void			CERASUSCONTROL_CALLMODE SetUserData(void* pUserData);			// CCerasusControl 设置用户数据
+	void*			CERASUSCONTROL_CALLMODE GetUserData();				// CCerasusControl 获取用户数据
 
 };
 

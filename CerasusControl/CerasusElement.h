@@ -20,7 +20,7 @@
 //Class Definition
 class CCerasusElement
 {
-private:
+public:
 
 
 public:

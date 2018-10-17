@@ -11,10 +11,26 @@
 */
 #include "CerasusElement.h"
 
+// CreasusUI 控件元素(UI)
+
+//------------------------------------------------------------------
+// @Function:	 CCerasusElement()
+// @Purpose: CCerasusElement构造函数
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
 CCerasusElement::CCerasusElement()
 {
 }
 
+//------------------------------------------------------------------
+// @Function:	 ~CCerasusElement()
+// @Purpose: CCerasusElement析构函数
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
 CCerasusElement::~CCerasusElement()
 {
 }

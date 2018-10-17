@@ -82,6 +82,8 @@ public:
 	virtual void	CERASUSCONTROL_CALLMODE SetVisible(bool bVisible);	// CCerasusControl 设置控件可见
 	virtual bool	CERASUSCONTROL_CALLMODE GetVisible();				// CCerasusControl 获取控件可见
 	UINT			CERASUSCONTROL_CALLMODE GetType() const;			// CCerasusControl 获取控件类型
+	int				CERASUSCONTROL_CALLMODE GetID() const;				// CCerasusControl 获取控件ID
+	void			CERASUSCONTROL_CALLMODE SetID(int nID);				// CCerasusControl 设置控件ID
 
 };
 

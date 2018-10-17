@@ -268,3 +268,27 @@ UINT CERASUSCONTROL_CALLMODE CCerasusControl::GetType() const
 {
 	return m_eType;
 }
+
+//------------------------------------------------------------------
+// @Function:	 GetID()
+// @Purpose: CCerasusControl获取控件ID
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+int CERASUSCONTROL_CALLMODE CCerasusControl::GetID() const
+{
+	return m_nID;
+}
+
+//------------------------------------------------------------------
+// @Function:	 SetID()
+// @Purpose: CCerasusControl设置控件ID
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+void CERASUSCONTROL_CALLMODE CCerasusControl::SetID(int nID)
+{
+	m_nID = nID;
+}

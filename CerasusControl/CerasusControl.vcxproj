@@ -137,6 +137,7 @@
     <ClInclude Include="DirectCommon.h" />
     <ClInclude Include="DirectGraphics3D.h" />
     <ClInclude Include="DirectThreadSafe.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CerasusControl.cpp" />
@@ -144,6 +145,9 @@
     <ClCompile Include="CerasusUnit.cpp" />
     <ClCompile Include="DirectGraphics3D.cpp" />
     <ClCompile Include="DirectThreadSafe.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="CerasusControl.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

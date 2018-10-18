@@ -20,8 +20,12 @@
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-CCerasusElement::CCerasusElement()
+CCerasusElement::CCerasusElement(IDirect3DDevice9 * pD3D9Device)
 {
+	m_nTexIndex = 0;
+	m_nFontIndex = 0;
+	m_pTexElement = new CCerasusUnit(pD3D9Device);
+	m_pFontElement = new DirectFont(pD3D9Device);
 }
 
 //------------------------------------------------------------------
@@ -33,4 +37,54 @@ CCerasusElement::CCerasusElement()
 //------------------------------------------------------------------
 CCerasusElement::~CCerasusElement()
 {
+	SAFE_DELETE(m_pFontElement);
+	SAFE_DELETE(m_pTexElement);
+}
+
+//------------------------------------------------------------------
+// @Function:	 CCerasusElementGetTexElement()
+// @Purpose: CCerasusElement获取纹理元素
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+CCerasusUnit * CCerasusElement::CCerasusElementGetTexElement()
+{
+	return m_pTexElement;
+}
+
+//------------------------------------------------------------------
+// @Function:	 CCerasusElementGetFontElement()
+// @Purpose: CCerasusElement获取字体元素
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+DirectFont * CCerasusElement::CCerasusElementGetFontElement()
+{
+	return m_pFontElement;
+}
+
+//------------------------------------------------------------------
+// @Function:	 CCerasusElementSetTexElement()
+// @Purpose: CCerasusElement设置纹理元素
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+void CCerasusElement::CCerasusElementSetTexElement(CCerasusUnit * pTexElement)
+{
+	m_pTexElement = pTexElement;
+}
+
+//------------------------------------------------------------------
+// @Function:	 CCerasusElementSetFontElement()
+// @Purpose: CCerasusElement设置字体元素
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+void CCerasusElement::CCerasusElementSetFontElement(DirectFont * pFontElement)
+{
+	m_pFontElement = pFontElement;
 }

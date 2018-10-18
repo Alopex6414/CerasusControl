@@ -22,7 +22,6 @@ class CCerasusElement
 {
 public:
 
-
 public:
 	CCerasusElement();
 	~CCerasusElement();

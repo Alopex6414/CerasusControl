@@ -15,7 +15,7 @@
 #define __CERASUSELEMENT_H_
 
 //Include Direct Common Header File
-#include "DirectCommon.h"
+#include "CerasusUICommon.h"
 
 //Class Definition
 class CCerasusElement

@@ -20,7 +20,6 @@
 #include "DirectThreadSafe.h"
 
 #include "CerasusUnit.h"
-#include "CerasusElement.h"
 #include "CerasusGrowArray.h"
 
 //Macro Definition

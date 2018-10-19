@@ -24,8 +24,8 @@ CCerasusElement::CCerasusElement(IDirect3DDevice9 * pD3D9Device)
 {
 	m_nTexIndex = 0;
 	m_nFontIndex = 0;
-	m_pTexElement = new CCerasusUnit(pD3D9Device);
-	m_pFontElement = new DirectFont(pD3D9Device);
+	m_pTexElement = new CCerasusBlendTex(pD3D9Device);
+	m_pFontElement = new CCerasusBlendFont(pD3D9Device);
 }
 
 //------------------------------------------------------------------
@@ -48,7 +48,7 @@ CCerasusElement::~CCerasusElement()
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-CCerasusUnit * CCerasusElement::CCerasusElementGetTexElement()
+CCerasusBlendTex * CCerasusElement::CCerasusElementGetTexElement()
 {
 	return m_pTexElement;
 }
@@ -60,7 +60,7 @@ CCerasusUnit * CCerasusElement::CCerasusElementGetTexElement()
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-DirectFont * CCerasusElement::CCerasusElementGetFontElement()
+CCerasusBlendFont * CCerasusElement::CCerasusElementGetFontElement()
 {
 	return m_pFontElement;
 }
@@ -72,7 +72,7 @@ DirectFont * CCerasusElement::CCerasusElementGetFontElement()
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-void CCerasusElement::CCerasusElementSetTexElement(CCerasusUnit * pTexElement)
+void CCerasusElement::CCerasusElementSetTexElement(CCerasusBlendTex * pTexElement)
 {
 	m_pTexElement = pTexElement;
 }
@@ -84,33 +84,7 @@ void CCerasusElement::CCerasusElementSetTexElement(CCerasusUnit * pTexElement)
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-void CCerasusElement::CCerasusElementSetFontElement(DirectFont * pFontElement)
+void CCerasusElement::CCerasusElementSetFontElement(CCerasusBlendFont * pFontElement)
 {
 	m_pFontElement = pFontElement;
-}
-
-//------------------------------------------------------------------
-// @Function:	 CCerasusElementTexElementInit()
-// @Purpose: CCerasusElement初始化纹理元素
-// @Since: v1.00a
-// @Para: None
-// @Return: None
-//------------------------------------------------------------------
-void CCerasusElement::CCerasusElementTexElementInit(UINT nIndex, CUUint sUnit)
-{
-	m_nTexIndex = nIndex;
-	m_pTexElement->CCerasusUnitInit(sUnit);
-}
-
-//------------------------------------------------------------------
-// @Function:	 CCerasusElementFontElementInit()
-// @Purpose: CCerasusElement初始化字体元素
-// @Since: v1.00a
-// @Para: None
-// @Return: None
-//------------------------------------------------------------------
-void CCerasusElement::CCerasusElementFontElementInit(UINT nIndex, int nFontSize, LPWSTR lpszFontType)
-{
-	m_nFontIndex = nIndex;
-	m_pFontElement->DirectFontInit(nFontSize, lpszFontType);
 }

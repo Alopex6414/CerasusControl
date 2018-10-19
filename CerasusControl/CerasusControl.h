@@ -16,6 +16,7 @@
 
 //Include CerasusUI Common Header File
 #include "CerasusUICommon.h"
+#include "CerasusBlend.h"
 
 //Macro Definition
 #ifdef	CERASUSCONTROL_EXPORTS

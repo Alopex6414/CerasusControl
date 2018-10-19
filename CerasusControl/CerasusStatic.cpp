@@ -51,3 +51,34 @@ BOOL CERASUSSTATIC_CALLMODE CCerasusStatic::ContainsPoint(POINT pt)
 {
 	return FALSE;
 }
+
+//------------------------------------------------------------------
+// @Function:	 GetText()
+// @Purpose: CCerasusStatic获取文本
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+LPCWSTR CERASUSSTATIC_CALLMODE CCerasusStatic::GetText()
+{
+	return m_strText;
+}
+
+//------------------------------------------------------------------
+// @Function:	 SetText()
+// @Purpose: CCerasusStatic设置文本
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+HRESULT CERASUSSTATIC_CALLMODE CCerasusStatic::SetText(LPCWSTR strText)
+{
+	if (strText == NULL)
+	{
+		m_strText[0] = 0;
+		return S_OK;
+	}
+
+	wcscpy_s(m_strText, MAX_PATH, strText);
+	return S_OK;
+}

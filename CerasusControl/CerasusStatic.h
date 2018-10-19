@@ -37,8 +37,10 @@ public:
 	CCerasusStatic();					// CCerasusStatic 构造函数
 
 	virtual void	CERASUSSTATIC_CALLMODE Render();						// CCerasusStatic 渲染控件
-
 	virtual BOOL	CERASUSSTATIC_CALLMODE ContainsPoint(POINT pt);			// CCerasusStatic 鼠标落在控件内
+
+	LPCWSTR			CERASUSSTATIC_CALLMODE GetText();						// CCerasusStatic 获取当前文本
+	HRESULT			CERASUSSTATIC_CALLMODE SetText(LPCWSTR strText);		// CCerasusStatic 设置当前文本
 
 };
 

@@ -146,6 +146,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CerasusBlend.h" />
     <ClInclude Include="CerasusControl.h" />
     <ClInclude Include="CerasusElement.h" />
     <ClInclude Include="CerasusGrowArray.h" />
@@ -159,6 +160,7 @@
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CerasusBlend.cpp" />
     <ClCompile Include="CerasusControl.cpp" />
     <ClCompile Include="CerasusElement.cpp" />
     <ClCompile Include="CerasusGrowArray.cpp" />

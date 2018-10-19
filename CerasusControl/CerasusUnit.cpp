@@ -6,10 +6,13 @@
 * @file		CreasusUnit.cpp
 * @brief	This File is CreasusUnit DLL Project.
 * @author	Alopex/Helium
-* @version	v1.02a
+* @version	v1.05a
 * @date		2018-07-04	v1.00a	alopex	Create Project.
 * @date		2018-07-05	v1.01a	alopex	Add Get&Set Function.
 * @date		2018-07-05	v1.02a	alopex	Add Translate Function.
+* @date		2018-07-06	v1.03a	alopex	Modify Para.
+* @date		2018-07-14	v1.04a	alopex	Modify Function.
+* @date		2018-07-14	v1.05a	alopex	Add Texture Create In Memory Function.
 */
 #include "CerasusUnit.h"
 
@@ -29,6 +32,8 @@ CCerasusUnit::CCerasusUnit()
 	m_nScreenWidth = 0;
 	m_nScreenHeight = 0;
 	m_pTextureStr = NULL;
+	m_pTextureArr = NULL;
+	m_nTextureArrSize = 0;
 	m_nTextureWidth = 0;
 	m_nTextureHeight = 0;
 	m_fUnitAlpha = 0.0f;
@@ -68,6 +73,8 @@ CCerasusUnit::CCerasusUnit(IDirect3DDevice9 * pD3D9Device)
 	m_nScreenWidth = 0;
 	m_nScreenHeight = 0;
 	m_pTextureStr = NULL;
+	m_pTextureArr = NULL;
+	m_nTextureArrSize = 0;
 	m_nTextureWidth = 0;
 	m_nTextureHeight = 0;
 	m_fUnitAlpha = 0.0f;
@@ -506,6 +513,33 @@ HRESULT CERASUSUNIT_CALLMODE CCerasusUnit::CCerasusUnitInit(CUUint sUnit)
 }
 
 //------------------------------------------------------------------
+// @Function:	 CCerasusUnitInit()
+// @Purpose: CCerasusUnit初始化图形单元(纹理)
+// @Since: v1.00a
+// @Para: LPCWSTR pStr		//纹理绝对路径
+// @Para: UINT nWidth		//纹理宽度
+// @Para: UINT nHeight		//纹理高度
+// @Return: None
+//------------------------------------------------------------------
+HRESULT CERASUSUNIT_CALLMODE CCerasusUnit::CCerasusUnitInit(CUUintEx sUnit)
+{
+	DirectThreadSafe ThreadSafe(&m_cs, m_bThreadSafe);
+
+	m_nScreenWidth = sUnit.nScreenWidth;
+	m_nScreenHeight = sUnit.nScreenHeight;
+	m_pTextureArr = sUnit.pTextureArr;
+	m_nTextureArrSize = sUnit.nTextureArrSize;
+	m_nTextureWidth = sUnit.nTextureWidth;
+	m_nTextureHeight = sUnit.nTextureHeight;
+	m_fUnitAlpha = sUnit.fUnitAlpha;
+	memcpy_s(&m_rcUnit, sizeof(m_rcUnit), &(sUnit.rcUnit), sizeof(sUnit.rcUnit));
+	memcpy_s(&m_rcUnitTex, sizeof(m_rcUnitTex), &(sUnit.rcUnitTex), sizeof(sUnit.rcUnitTex));
+	memcpy_s(&m_sCoordsTransformPara, sizeof(m_sCoordsTransformPara), &(sUnit.sCoordsTransformPara), sizeof(sUnit.sCoordsTransformPara));
+
+	return m_pDirectGraphics3D->DirectGraphics3DInitVertex3DTexture(1, m_pTextureArr, m_nTextureArrSize, m_nTextureWidth, m_nTextureHeight);
+}
+
+//------------------------------------------------------------------
 // @Function:	 CCerasusUnitPaddingVertexAndIndex()
 // @Purpose: CCerasusUnit填充顶点索引
 // @Since: v1.00a
@@ -535,13 +569,13 @@ void CERASUSUNIT_CALLMODE CCerasusUnit::CCerasusUnitPaddingVertexAndIndex()
 	float fVertex4V = 0.0f;
 
 	fVertex1X = -(m_nScreenWidth * 0.5f) + m_rcUnit.left * 1.0f;
-	fVertex1Y = -(m_nScreenHeight * 0.5f) + m_rcUnit.top * 1.0f;
+	fVertex1Y = (m_nScreenHeight * 0.5f) - m_rcUnit.top * 1.0f;
 	fVertex2X = -(m_nScreenWidth * 0.5f) + m_rcUnit.right * 1.0f;
-	fVertex2Y = -(m_nScreenHeight * 0.5f) + m_rcUnit.top * 1.0f;
+	fVertex2Y = (m_nScreenHeight * 0.5f) - m_rcUnit.top * 1.0f;
 	fVertex3X = -(m_nScreenWidth * 0.5f) + m_rcUnit.right * 1.0f;
-	fVertex3Y = -(m_nScreenHeight * 0.5f) + m_rcUnit.bottom * 1.0f;
+	fVertex3Y = (m_nScreenHeight * 0.5f) - m_rcUnit.bottom * 1.0f;
 	fVertex4X = -(m_nScreenWidth * 0.5f) + m_rcUnit.left * 1.0f;
-	fVertex4Y = -(m_nScreenHeight * 0.5f) + m_rcUnit.bottom * 1.0f;
+	fVertex4Y = (m_nScreenHeight * 0.5f) - m_rcUnit.bottom * 1.0f;
 
 	fVertex1U = (float)(m_rcUnitTex.left * 1.0f / m_nTextureWidth);
 	fVertex1V = (float)(m_rcUnitTex.top * 1.0f / m_nTextureHeight);
@@ -554,10 +588,10 @@ void CERASUSUNIT_CALLMODE CCerasusUnit::CCerasusUnitPaddingVertexAndIndex()
 
 	Vertex3DTexture pVertices[] = 
 	{
-		{ fVertex1X, fVertex1Y, 1.0f, D3DXCOLOR(1.0f, 1.0f, 1.0f, m_fUnitAlpha), fVertex1U, fVertex1V },
-		{ fVertex2X, fVertex2Y, 1.0f, D3DXCOLOR(1.0f, 1.0f, 1.0f, m_fUnitAlpha), fVertex2U, fVertex2V },
-		{ fVertex3X, fVertex3Y, 1.0f, D3DXCOLOR(1.0f, 1.0f, 1.0f, m_fUnitAlpha), fVertex3U, fVertex3V },
-		{ fVertex4X, fVertex4Y, 1.0f, D3DXCOLOR(1.0f, 1.0f, 1.0f, m_fUnitAlpha), fVertex4U, fVertex4V },
+		{ fVertex1X, fVertex1Y, -1.0f, D3DXCOLOR(1.0f, 1.0f, 1.0f, m_fUnitAlpha), fVertex1U, fVertex1V },
+		{ fVertex2X, fVertex2Y, -1.0f, D3DXCOLOR(1.0f, 1.0f, 1.0f, m_fUnitAlpha), fVertex2U, fVertex2V },
+		{ fVertex3X, fVertex3Y, -1.0f, D3DXCOLOR(1.0f, 1.0f, 1.0f, m_fUnitAlpha), fVertex3U, fVertex3V },
+		{ fVertex4X, fVertex4Y, -1.0f, D3DXCOLOR(1.0f, 1.0f, 1.0f, m_fUnitAlpha), fVertex4U, fVertex4V },
 	};
 
 	m_pDirectGraphics3D->DirectGraphics3DPaddingVertexAndIndex(pVertices, 1);
@@ -605,6 +639,54 @@ void CERASUSUNIT_CALLMODE CCerasusUnit::CCerasusUnitMatrixTransform()
 }
 
 //------------------------------------------------------------------
+// @Function:	 CCerasusUnitSetAlphaBlendEnable()
+// @Purpose: CCerasusUnit设置Alpha渲染开启
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+void CERASUSUNIT_CALLMODE CCerasusUnit::CCerasusUnitSetAlphaBlendEnable()
+{
+	DirectThreadSafe ThreadSafe(&m_cs, m_bThreadSafe);
+	m_pDirectGraphics3D->DirectGraphics3DRenderStateAlphaEnable();
+}
+
+//------------------------------------------------------------------
+// @Function:	 CCerasusUnitSetAlphaBlendDisable()
+// @Purpose: CCerasusUnit设置Alpha渲染关闭
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+void CERASUSUNIT_CALLMODE CCerasusUnit::CCerasusUnitSetAlphaBlendDisable()
+{
+	DirectThreadSafe ThreadSafe(&m_cs, m_bThreadSafe);
+	m_pDirectGraphics3D->DirectGraphics3DRenderStateAlphaDisable();
+}
+
+//------------------------------------------------------------------
+// @Function:	 CCerasusUnitSetRenderState()
+// @Purpose: CCerasusUnit设置渲染状态
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+void CERASUSUNIT_CALLMODE CCerasusUnit::CCerasusUnitSetRenderState()
+{
+	DirectThreadSafe ThreadSafe(&m_cs, m_bThreadSafe);
+	m_pDirectGraphics3D->DirectGraphics3DGetDevice()->SetRenderState(D3DRS_BLENDOP, D3DBLENDOP_ADD);					//Alpha混合模式:ADD
+	m_pDirectGraphics3D->DirectGraphics3DGetDevice()->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
+	m_pDirectGraphics3D->DirectGraphics3DGetDevice()->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
+
+	//渲染模式:纹理混合设置
+	m_pDirectGraphics3D->DirectGraphics3DGetDevice()->SetTextureStageState(0, D3DTSS_ALPHAOP, D3DTOP_MODULATE);
+	m_pDirectGraphics3D->DirectGraphics3DGetDevice()->SetTextureStageState(0, D3DTSS_ALPHAARG1, D3DTA_DIFFUSE);//D3DTA_DIFFUSE//D3DTA_TEXTURE
+	m_pDirectGraphics3D->DirectGraphics3DGetDevice()->SetTextureStageState(0, D3DTSS_ALPHAARG2, D3DTA_TEXTURE);
+	m_pDirectGraphics3D->DirectGraphics3DGetDevice()->SetTextureStageState(0, D3DTSS_COLOROP, D3DTOP_SELECTARG1);
+	m_pDirectGraphics3D->DirectGraphics3DGetDevice()->SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_TEXTURE);
+}
+
+//------------------------------------------------------------------
 // @Function:	 CCerasusUnitRender()
 // @Purpose: CCerasusUnit渲染
 // @Since: v1.00a
@@ -614,7 +696,5 @@ void CERASUSUNIT_CALLMODE CCerasusUnit::CCerasusUnitMatrixTransform()
 void CERASUSUNIT_CALLMODE CCerasusUnit::CCerasusUnitRender()
 {
 	DirectThreadSafe ThreadSafe(&m_cs, m_bThreadSafe);
-	m_pDirectGraphics3D->DirectGraphics3DRenderStateSetting();
 	m_pDirectGraphics3D->DirectGraphics3DRender(Vertex3D_Type_Texture, 1, true);
-	m_pDirectGraphics3D->DirectGraphics3DRenderStateAlphaDisable();
 }

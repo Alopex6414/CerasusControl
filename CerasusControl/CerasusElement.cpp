@@ -88,3 +88,29 @@ void CCerasusElement::CCerasusElementSetFontElement(DirectFont * pFontElement)
 {
 	m_pFontElement = pFontElement;
 }
+
+//------------------------------------------------------------------
+// @Function:	 CCerasusElementTexElementInit()
+// @Purpose: CCerasusElement初始化纹理元素
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+void CCerasusElement::CCerasusElementTexElementInit(UINT nIndex, CUUint sUnit)
+{
+	m_nTexIndex = nIndex;
+	m_pTexElement->CCerasusUnitInit(sUnit);
+}
+
+//------------------------------------------------------------------
+// @Function:	 CCerasusElementFontElementInit()
+// @Purpose: CCerasusElement初始化字体元素
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+void CCerasusElement::CCerasusElementFontElementInit(UINT nIndex, int nFontSize, LPWSTR lpszFontType)
+{
+	m_nFontIndex = nIndex;
+	m_pFontElement->DirectFontInit(nFontSize, lpszFontType);
+}

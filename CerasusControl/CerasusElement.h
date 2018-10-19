@@ -40,6 +40,10 @@ public:
 	void CCerasusElementSetTexElement(CCerasusUnit* pTexElement);			// CCerasusElement 设置纹理图形元素
 	void CCerasusElementSetFontElement(DirectFont* pFontElement);			// CCerasusElement 设置字体绘制元素
 
+	// 方法
+	void CCerasusElementTexElementInit(UINT nIndex, CUUint sUnit);									// CCerasusElement 初始化纹理图形元素
+	void CCerasusElementFontElementInit(UINT nIndex, int nFontSize, LPWSTR lpszFontType);			// CCerasusElement 初始化字体绘制元素
+
 };
 
 #endif // !__CERASUSELEMENT_H_

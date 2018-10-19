@@ -64,6 +64,22 @@ void CCerasusBlendTex::Init(CUUint sUnitArr[MAX_CONTROL_STATES])
 }
 
 //------------------------------------------------------------------
+// @Function:	 Init()
+// @Purpose: CCerasusBlendTex初始化控件纹理
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+void CCerasusBlendTex::Init(CUUintEx sUnitArr[MAX_CONTROL_STATES])
+{
+	for (int i = 0; i < MAX_CONTROL_STATES; ++i)
+	{
+		m_pTexStates[i]->CCerasusUnitInit(sUnitArr[i]);
+	}
+
+}
+
+//------------------------------------------------------------------
 // @Function:	 Blend()
 // @Purpose: CCerasusBlendTex渲染控件纹理
 // @Since: v1.00a

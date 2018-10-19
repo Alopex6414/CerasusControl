@@ -29,6 +29,7 @@ public:
 	~CCerasusBlendTex();									// CCerasusBlendTex 析构函数
 
 	void	Init(CUUint sUnitArr[MAX_CONTROL_STATES]);		// CCerasusBlendTex 初始化控件纹理
+	void	Init(CUUintEx sUnitArr[MAX_CONTROL_STATES]);	// CCerasusBlendTex 初始化控件纹理(重载+1)
 	void	Blend(UINT nState);								// CCerasusBlendTex 渲染控件纹理
 
 };

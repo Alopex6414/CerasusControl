@@ -29,7 +29,7 @@
 //Class Definition
 class CERASUSCONTROL_API CCerasusControl
 {
-private:
+public:
 	int m_nX;					// CCerasusControl 控件X坐标
 	int m_nY;					// CCerasusControl 控件Y坐标
 	int m_nWidth;				// CCerasusControl 控件宽度

@@ -47,7 +47,7 @@ public:
 	DirectFont* m_pFontStates[MAX_CONTROL_STATES];			// CCerasusBlendFont 控件字体全部状态
 	DirectFont* m_pFontCurrent;								// CCerasusBlendFont 控件字体当前状态
 
-protected:
+public:
 	int		m_nFontSize;									// CCerasusBlendFont 字体大小
 	LPWSTR	m_lpszFontType;									// CCerasusBlendFont 字体型号
 

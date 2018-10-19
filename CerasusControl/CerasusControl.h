@@ -16,7 +16,7 @@
 
 //Include CerasusUI Common Header File
 #include "CerasusUICommon.h"
-#include "CerasusBlend.h"
+#include "CerasusElement.h"
 
 //Macro Definition
 #ifdef	CERASUSCONTROL_EXPORTS
@@ -43,6 +43,8 @@ public:
 
 	//CDXUTDialog* m_pDialog;    // CCerasusControl Parent container
 	UINT m_nIndex;              // CCerasusControl 控件列表中控件索引
+
+	CCerasusElement* m_Elements;			// CCerasusControl 控件渲染元素
 
 protected:
 	int m_nID;						// CCerasusControl 控件序号

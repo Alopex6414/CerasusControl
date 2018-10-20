@@ -38,6 +38,7 @@ public:
 	void	Init();											// CCerasusBlendTex 初始化控件纹理
 	void	InitEx();										// CCerasusBlendTex 初始化控件纹理(重载+1)
 	void	Blend(UINT nState);								// CCerasusBlendTex 渲染控件纹理
+	void	Refresh();										// CCerasusBlendTex 刷新控件纹理
 
 };
 
@@ -47,7 +48,7 @@ public:
 	DirectFont* m_pFontStates[MAX_CONTROL_STATES];			// CCerasusBlendFont 控件字体全部状态
 	DirectFont* m_pFontCurrent;								// CCerasusBlendFont 控件字体当前状态
 
-public:
+protected:
 	int		m_nFontSize;									// CCerasusBlendFont 字体大小
 	LPWSTR	m_lpszFontType;									// CCerasusBlendFont 字体型号
 
@@ -65,6 +66,7 @@ public:
 
 	void	Init();											// CCerasusBlendFont 初始化控件字体
 	void	Blend(UINT nState);								// CCerasusBlendFont 渲染控件字体
+	void	Refresh();										// CCerasusBlendFont 刷新控件字体
 
 };
 

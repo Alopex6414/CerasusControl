@@ -125,6 +125,18 @@ void CCerasusBlendTex::Blend(UINT nState)
 }
 
 //------------------------------------------------------------------
+// @Function:	 Refresh()
+// @Purpose: CCerasusBlendTex刷新控件纹理
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+void CCerasusBlendTex::Refresh()
+{
+	m_pTexCurrent = m_pTexStates[CERASUS_STATE_HIDDEN];
+}
+
+//------------------------------------------------------------------
 // @Function:	 CCerasusBlendFont()
 // @Purpose: CCerasusBlendFont构造函数
 // @Since: v1.00a
@@ -220,4 +232,16 @@ void CCerasusBlendFont::Blend(UINT nState)
 {
 	m_pFontCurrent = m_pFontStates[nState];
 	m_pFontCurrent->DirectFontDrawText(m_hWnd, m_lpcszStr, m_dwFormat, m_dwColor);
+}
+
+//------------------------------------------------------------------
+// @Function:	 Refresh()
+// @Purpose: CCerasusBlendFont刷新控件字体
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+void CCerasusBlendFont::Refresh()
+{
+	m_pFontCurrent = m_pFontStates[CERASUS_STATE_HIDDEN];
 }

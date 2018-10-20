@@ -37,7 +37,19 @@ CCerasusStatic::CCerasusStatic()
 //------------------------------------------------------------------
 void CERASUSSTATIC_CALLMODE CCerasusStatic::Render()
 {
-	
+	if (m_bVisible == false)
+	{
+		return;
+	}
+
+	CERASUS_CONTROL_STATE nState = CERASUS_STATE_NORMAL;
+
+	if (m_bEnabled == false)
+	{
+		nState = CERASUS_STATE_DISABLED;
+	}
+
+	m_Element->CCerasusElementGetFontElement()->Blend(nState);
 }
 
 //------------------------------------------------------------------

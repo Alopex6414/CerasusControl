@@ -38,6 +38,8 @@ CCerasusControl::CCerasusControl()
 	m_pUserData = NULL;
 	m_eType = CERASUS_CONTROL_BUTTON;
 
+	m_Element = NULL;
+
 	ZeroMemory(&m_rcBoundingBox, sizeof(m_rcBoundingBox));
 }
 

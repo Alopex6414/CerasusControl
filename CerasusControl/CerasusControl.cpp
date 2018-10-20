@@ -50,7 +50,7 @@ CCerasusControl::CCerasusControl()
 //------------------------------------------------------------------
 CCerasusControl::~CCerasusControl()
 {
-	
+	SAFE_DELETE(m_Element);
 }
 
 //------------------------------------------------------------------
@@ -368,6 +368,37 @@ void CERASUSCONTROL_CALLMODE CCerasusControl::SetUserData(void * pUserData)
 void *CERASUSCONTROL_CALLMODE CCerasusControl::GetUserData()
 {
 	return m_pUserData;
+}
+
+//------------------------------------------------------------------
+// @Function:	 GetElement()
+// @Purpose: CCerasusControl获取元素
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+CCerasusElement *CERASUSCONTROL_CALLMODE CCerasusControl::GetElement()
+{
+	return m_Element;
+}
+
+//------------------------------------------------------------------
+// @Function:	 SetElement()
+// @Purpose: CCerasusControl设置元素
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+HRESULT CERASUSCONTROL_CALLMODE CCerasusControl::SetElement(CCerasusElement* pElement)
+{
+	if (pElement == NULL)
+	{
+		return E_INVALIDARG;
+	}
+
+	m_Element = new CCerasusElement(*pElement);
+
+	return S_OK;
 }
 
 //------------------------------------------------------------------

@@ -44,7 +44,7 @@ public:
 	//CDXUTDialog* m_pDialog;    // CCerasusControl Parent container
 	UINT m_nIndex;              // CCerasusControl 控件列表中控件索引
 
-	CCerasusElement* m_Elements;			// CCerasusControl 控件渲染元素
+	CCerasusElement* m_Element;	// CCerasusControl 控件渲染元素
 
 protected:
 	int m_nID;						// CCerasusControl 控件序号
@@ -91,6 +91,8 @@ public:
 	UINT			CERASUSCONTROL_CALLMODE GetHotkey();				// CCerasusControl 获取虚拟键值
 	void			CERASUSCONTROL_CALLMODE SetUserData(void* pUserData);			// CCerasusControl 设置用户数据
 	void*			CERASUSCONTROL_CALLMODE GetUserData();				// CCerasusControl 获取用户数据
+	CCerasusElement*CERASUSCONTROL_CALLMODE GetElement();				// CCerasusControl 获取渲染元素
+	HRESULT			CERASUSCONTROL_CALLMODE SetElement(CCerasusElement* pElement);	// CCerasusControl 设置渲染元素
 
 };
 

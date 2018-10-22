@@ -51,6 +51,9 @@
     <ClInclude Include="CerasusBlend.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="CerasusButton.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CerasusControl.cpp">
@@ -78,6 +81,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="CerasusBlend.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CerasusButton.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

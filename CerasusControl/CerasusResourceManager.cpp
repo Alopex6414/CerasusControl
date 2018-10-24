@@ -65,7 +65,7 @@ CCerasusResourceManager::~CCerasusResourceManager()
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-IDirect3DDevice9 * CCerasusResourceManager::GetDevice() const
+IDirect3DDevice9 * CERASUSRESOURCEMANAGER_CALLMETHOD CCerasusResourceManager::GetDevice() const
 {
 	return m_pD3D9Device;
 }
@@ -77,7 +77,7 @@ IDirect3DDevice9 * CCerasusResourceManager::GetDevice() const
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-DirectSprite * CCerasusResourceManager::GetSprite() const
+DirectSprite * CERASUSRESOURCEMANAGER_CALLMETHOD CCerasusResourceManager::GetSprite() const
 {
 	return m_pSprite;
 }
@@ -89,7 +89,7 @@ DirectSprite * CCerasusResourceManager::GetSprite() const
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-vector<DirectFont*> CCerasusResourceManager::GetFontCache() const
+vector<DirectFont*> CERASUSRESOURCEMANAGER_CALLMETHOD CCerasusResourceManager::GetFontCache() const
 {
 	return m_pFontCache;
 }
@@ -101,7 +101,7 @@ vector<DirectFont*> CCerasusResourceManager::GetFontCache() const
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-vector<CCerasusUnit*> CCerasusResourceManager::GetTextureCache() const
+vector<CCerasusUnit*> CERASUSRESOURCEMANAGER_CALLMETHOD CCerasusResourceManager::GetTextureCache() const
 {
 	return m_pTextureCache;
 }
@@ -113,7 +113,7 @@ vector<CCerasusUnit*> CCerasusResourceManager::GetTextureCache() const
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-bool CCerasusResourceManager::MsgProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+bool CERASUSRESOURCEMANAGER_CALLMETHOD CCerasusResourceManager::MsgProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	return false;
 }
@@ -125,7 +125,7 @@ bool CCerasusResourceManager::MsgProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARA
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-HRESULT CCerasusResourceManager::OnD3D9ResetDevice()
+HRESULT CERASUSRESOURCEMANAGER_CALLMETHOD CCerasusResourceManager::OnD3D9ResetDevice()
 {
 	for (auto iter = m_pFontCache.begin(); iter != m_pFontCache.end(); ++iter)
 	{
@@ -142,7 +142,7 @@ HRESULT CCerasusResourceManager::OnD3D9ResetDevice()
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-HRESULT CCerasusResourceManager::OnD3D9LostDevice()
+HRESULT CERASUSRESOURCEMANAGER_CALLMETHOD CCerasusResourceManager::OnD3D9LostDevice()
 {
 	for (auto iter = m_pFontCache.begin(); iter != m_pFontCache.end(); ++iter)
 	{
@@ -164,7 +164,7 @@ HRESULT CCerasusResourceManager::OnD3D9LostDevice()
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-void CCerasusResourceManager::OnD3D9DestroyDevice()
+void CERASUSRESOURCEMANAGER_CALLMETHOD CCerasusResourceManager::OnD3D9DestroyDevice()
 {
 	for (auto iter = m_pFontCache.begin(); iter != m_pFontCache.end(); ++iter)
 	{
@@ -187,7 +187,7 @@ void CCerasusResourceManager::OnD3D9DestroyDevice()
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-DirectFont * CCerasusResourceManager::GetFontNode(int nIndex)
+DirectFont * CERASUSRESOURCEMANAGER_CALLMETHOD CCerasusResourceManager::GetFontNode(int nIndex)
 {
 	return m_pFontCache[nIndex];
 }
@@ -199,7 +199,7 @@ DirectFont * CCerasusResourceManager::GetFontNode(int nIndex)
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-CCerasusUnit * CCerasusResourceManager::GetTextureNode(int nIndex)
+CCerasusUnit * CERASUSRESOURCEMANAGER_CALLMETHOD CCerasusResourceManager::GetTextureNode(int nIndex)
 {
 	return m_pTextureCache[nIndex];
 }
@@ -212,7 +212,7 @@ CCerasusUnit * CCerasusResourceManager::GetTextureNode(int nIndex)
 // @Para: int nFontSize			// 字体大小
 // @Return: None
 //------------------------------------------------------------------
-int CCerasusResourceManager::AddFont(LPWSTR strFontName, int nFontSize)
+int CERASUSRESOURCEMANAGER_CALLMETHOD CCerasusResourceManager::AddFont(LPWSTR strFontName, int nFontSize)
 {
 	DirectFont* pFontNode = new DirectFont(m_pD3D9Device);
 
@@ -242,7 +242,7 @@ int CCerasusResourceManager::AddFont(LPWSTR strFontName, int nFontSize)
 // @Para: CUUint sUnit	// 添加纹理参数
 // @Return: None
 //------------------------------------------------------------------
-int CCerasusResourceManager::AddTexture(CUUint sUnit)
+int CERASUSRESOURCEMANAGER_CALLMETHOD CCerasusResourceManager::AddTexture(CUUint sUnit)
 {
 	CCerasusUnit* pTextureNode = new CCerasusUnit(m_pD3D9Device);
 
@@ -272,7 +272,7 @@ int CCerasusResourceManager::AddTexture(CUUint sUnit)
 // @Para: CUUintEx sUnit	// 添加纹理参数
 // @Return: None
 //------------------------------------------------------------------
-int CCerasusResourceManager::AddTexture(CUUintEx sUnit)
+int CERASUSRESOURCEMANAGER_CALLMETHOD CCerasusResourceManager::AddTexture(CUUintEx sUnit)
 {
 	CCerasusUnit* pTextureNode = new CCerasusUnit(m_pD3D9Device);
 

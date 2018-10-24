@@ -17,6 +17,7 @@
 //Include Direct Common Header File
 #include "DirectCommon.h"
 #include "DirectFont.h"
+#include "DirectSprite.h"
 #include "DirectGraphics3D.h"
 #include "DirectThreadSafe.h"
 

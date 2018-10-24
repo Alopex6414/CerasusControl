@@ -157,6 +157,7 @@
     <ClInclude Include="DirectCommon.h" />
     <ClInclude Include="DirectFont.h" />
     <ClInclude Include="DirectGraphics3D.h" />
+    <ClInclude Include="DirectSprite.h" />
     <ClInclude Include="DirectThreadSafe.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
@@ -170,6 +171,7 @@
     <ClCompile Include="CerasusUnit.cpp" />
     <ClCompile Include="DirectFont.cpp" />
     <ClCompile Include="DirectGraphics3D.cpp" />
+    <ClCompile Include="DirectSprite.cpp" />
     <ClCompile Include="DirectThreadSafe.cpp" />
   </ItemGroup>
   <ItemGroup>

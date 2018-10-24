@@ -23,6 +23,7 @@
 CCerasusResourceManager::CCerasusResourceManager(LPDIRECT3DDEVICE9 pD3D9Device)
 {
 	m_pD3D9Device = pD3D9Device;
+	m_pSprite = NULL;
 
 	m_pFontCache.clear();
 	m_pTextureCache.clear();
@@ -53,6 +54,56 @@ CCerasusResourceManager::~CCerasusResourceManager()
 	}
 	m_pTextureCache.clear();
 
+	// 精灵
+	SAFE_DELETE(m_pSprite);
+}
+
+//------------------------------------------------------------------
+// @Function:	 GetDevice()
+// @Purpose: CCerasusResourceManager获取设备接口指针
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+IDirect3DDevice9 * CCerasusResourceManager::GetDevice() const
+{
+	return m_pD3D9Device;
+}
+
+//------------------------------------------------------------------
+// @Function:	 GetSprite()
+// @Purpose: CCerasusResourceManager获取精灵接口指针
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+DirectSprite * CCerasusResourceManager::GetSprite() const
+{
+	return m_pSprite;
+}
+
+//------------------------------------------------------------------
+// @Function:	 GetFontCache()
+// @Purpose: CCerasusResourceManager获取渲染字体接口指针
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+vector<DirectFont*> CCerasusResourceManager::GetFontCache() const
+{
+	return m_pFontCache;
+}
+
+//------------------------------------------------------------------
+// @Function:	 GetTextureCache()
+// @Purpose: CCerasusResourceManager获取渲染纹理接口指针
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+vector<CCerasusUnit*> CCerasusResourceManager::GetTextureCache() const
+{
+	return m_pTextureCache;
 }
 
 //------------------------------------------------------------------
@@ -65,6 +116,92 @@ CCerasusResourceManager::~CCerasusResourceManager()
 bool CCerasusResourceManager::MsgProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	return false;
+}
+
+//------------------------------------------------------------------
+// @Function:	 OnD3D9ResetDevice()
+// @Purpose: CCerasusResourceManager响应D3D9字体重置设备
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+HRESULT CCerasusResourceManager::OnD3D9ResetDevice()
+{
+	for (auto iter = m_pFontCache.begin(); iter != m_pFontCache.end(); ++iter)
+	{
+		VERIFY((*iter)->DirectFontGetFont()->OnResetDevice());
+	}
+
+	return S_OK;
+}
+
+//------------------------------------------------------------------
+// @Function:	 OnD3D9ResetDevice()
+// @Purpose: CCerasusResourceManager响应D3D9字体丢失设备
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+HRESULT CCerasusResourceManager::OnD3D9LostDevice()
+{
+	for (auto iter = m_pFontCache.begin(); iter != m_pFontCache.end(); ++iter)
+	{
+		VERIFY((*iter)->DirectFontReset());
+	}
+
+	for (auto iter = m_pTextureCache.begin(); iter != m_pTextureCache.end(); ++iter)
+	{
+		VERIFY((*iter)->CCerasusUnitReset());
+	}
+
+	return S_OK;
+}
+
+//------------------------------------------------------------------
+// @Function:	 OnD3D9ResetDevice()
+// @Purpose: CCerasusResourceManager响应D3D9字体删除设备
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+void CCerasusResourceManager::OnD3D9DestroyDevice()
+{
+	for (auto iter = m_pFontCache.begin(); iter != m_pFontCache.end(); ++iter)
+	{
+		SAFE_DELETE(*iter);
+	}
+	m_pFontCache.clear();
+
+	for (auto iter = m_pTextureCache.begin(); iter != m_pTextureCache.end(); ++iter)
+	{
+		SAFE_DELETE(*iter);
+	}
+	m_pTextureCache.clear();
+
+}
+
+//------------------------------------------------------------------
+// @Function:	 GetFontNode()
+// @Purpose: CCerasusResourceManager获取字体节点
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+DirectFont * CCerasusResourceManager::GetFontNode(int nIndex)
+{
+	return m_pFontCache[nIndex];
+}
+
+//------------------------------------------------------------------
+// @Function:	 GetTextureNode()
+// @Purpose: CCerasusResourceManager获取纹理节点
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+CCerasusUnit * CCerasusResourceManager::GetTextureNode(int nIndex)
+{
+	return m_pTextureCache[nIndex];
 }
 
 //------------------------------------------------------------------

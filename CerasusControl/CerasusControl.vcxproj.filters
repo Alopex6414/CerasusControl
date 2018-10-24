@@ -54,6 +54,9 @@
     <ClInclude Include="CerasusResourceManager.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="DirectSprite.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CerasusControl.cpp">
@@ -84,6 +87,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="CerasusResourceManager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectSprite.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

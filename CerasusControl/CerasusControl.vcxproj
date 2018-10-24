@@ -150,7 +150,6 @@
     <ClInclude Include="CerasusButton.h" />
     <ClInclude Include="CerasusControl.h" />
     <ClInclude Include="CerasusElement.h" />
-    <ClInclude Include="CerasusGrowArray.h" />
     <ClInclude Include="CerasusResourceManager.h" />
     <ClInclude Include="CerasusStatic.h" />
     <ClInclude Include="CerasusUICommon.h" />
@@ -166,7 +165,6 @@
     <ClCompile Include="CerasusButton.cpp" />
     <ClCompile Include="CerasusControl.cpp" />
     <ClCompile Include="CerasusElement.cpp" />
-    <ClCompile Include="CerasusGrowArray.cpp" />
     <ClCompile Include="CerasusResourceManager.cpp" />
     <ClCompile Include="CerasusStatic.cpp" />
     <ClCompile Include="CerasusUnit.cpp" />

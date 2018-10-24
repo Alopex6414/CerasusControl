@@ -21,7 +21,16 @@
 #include "DirectThreadSafe.h"
 
 #include "CerasusUnit.h"
-#include "CerasusGrowArray.h"
+
+//Include C/C++ Standard Header File
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <queue>
+#include <map>
+
+//Using C/C++ Class Namespace
+using namespace std;
 
 //Macro Definition
 #define MAX_CONTROL_STATES 6

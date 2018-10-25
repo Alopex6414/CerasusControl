@@ -16,6 +16,7 @@
 
 //Include Direct Common Header File
 #include "CerasusUICommon.h"
+#include "CerasusDialog.h"
 
 //Macro Definition
 #ifdef	CERASUSCONTROL_EXPORTS
@@ -27,7 +28,7 @@
 #define CERASUSRESOURCEMANAGER_CALLMETHOD	__stdcall
 
 //Class Definition
-class CCerasusResourceManager
+class CERASUSRESOURCEMANAGER_API CCerasusResourceManager
 {
 protected:
 	LPDIRECT3DDEVICE9	m_pD3D9Device;				// D3D9渲染设备
@@ -38,6 +39,9 @@ protected:
 protected:
 	vector<DirectFont*>		m_pFontCache;			// 渲染字体
 	vector<CCerasusUnit*>	m_pTextureCache;		// 渲染纹理
+
+public:
+	vector<CCerasusDialog*>	m_pDialogs;				// 渲染窗口
 
 public:
 	CCerasusResourceManager(LPDIRECT3DDEVICE9 pD3D9Device);
@@ -62,6 +66,10 @@ public:
 	int		CERASUSRESOURCEMANAGER_CALLMETHOD	AddFont(LPWSTR strFontName, int nFontSize);			// 添加字体(字体名称、字体大小)
 	int		CERASUSRESOURCEMANAGER_CALLMETHOD	AddTexture(CUUint sUnit);							// 添加纹理(文件导入)
 	int		CERASUSRESOURCEMANAGER_CALLMETHOD	AddTexture(CUUintEx sUnit);							// 添加纹理(内存导入)
+
+public:
+	bool	CERASUSRESOURCEMANAGER_CALLMETHOD	RegisterDialog(CCerasusDialog* pDialog);			// 注册窗口
+	void	CERASUSRESOURCEMANAGER_CALLMETHOD	UnRegisterDialog(CCerasusDialog* pDialog);			// 注销窗口
 
 
 };

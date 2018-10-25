@@ -294,3 +294,39 @@ int CERASUSRESOURCEMANAGER_CALLMETHOD CCerasusResourceManager::AddTexture(CUUint
 
 	return nTexture;
 }
+
+//------------------------------------------------------------------
+// @Function:	 RegisterDialog()
+// @Purpose: CCerasusResourceManager注册窗口
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+bool CERASUSRESOURCEMANAGER_CALLMETHOD CCerasusResourceManager::RegisterDialog(CCerasusDialog * pDialog)
+{
+	for (auto iter = m_pDialogs.begin(); iter != m_pDialogs.end(); ++iter)
+	{
+		if (*iter == pDialog)
+		{
+			return true;
+		}
+
+	}
+
+	m_pDialogs.push_back(pDialog);	// 添加
+
+	return false;
+}
+
+//------------------------------------------------------------------
+// @Function:	 RegisterDialog()
+// @Purpose: CCerasusResourceManager注销窗口
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+void CERASUSRESOURCEMANAGER_CALLMETHOD CCerasusResourceManager::UnRegisterDialog(CCerasusDialog * pDialog)
+{
+	
+
+}

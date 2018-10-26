@@ -22,6 +22,27 @@
 //------------------------------------------------------------------
 CCerasusDialog::CCerasusDialog()
 {
+	m_nX = 0;
+	m_nY = 0;
+	m_nWidth = 0;
+	m_nHeight = 0;
+
+	m_pManager = NULL;
+	m_bVisible = true;
+	m_bCaption = false;
+	m_bMinimized = false;
+	m_bDrag = false;
+	m_wszCaption[0] = L'\0';
+	m_nCaptionHeight = 18;
+
+	m_colorTopLeft = 0;
+	m_colorTopRight = 0;
+	m_colorBottomLeft = 0;
+	m_colorBottomRight = 0;
+
+	m_pCallbackEvent = NULL;
+	m_pCallbackEventUserContext = NULL;
+
 }
 
 //------------------------------------------------------------------

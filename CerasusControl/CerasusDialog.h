@@ -54,17 +54,40 @@ private:
 	D3DCOLOR	m_colorBottomLeft;		// CCerasusDialog 窗口左下角顶点颜色
 	D3DCOLOR	m_colorBottomRight;		// CCerasusDialog 窗口右下角顶点颜色
 
+	int m_nDefaultControlID;			// CCerasusDialog 窗口默认控件ID
+
 	static double s_fTimeRefresh;		// CCerasusDialog 窗口刷新时间
 	double m_fTimeLastRefresh;			// CCerasusDialog 窗口上次刷新时间
+
+	static CCerasusControl* s_pControlFocus;		// CCerasusDialog 获得焦点控件
+	static CCerasusControl* s_pControlPressed;      // CCerasusDialog 当前按下控件
+
+	CCerasusControl* m_pControlMouseOver;           // CCerasusDialog 当前悬停控件
 
 private:
 	CCerasusResourceManager* m_pManager;			// CCerasusDialog 窗口资源管理类
 	LPCALLBACKCERASUSGUIEVENT m_pCallbackEvent;		// CCerasusDialog 窗口事件回调函数
 	void* m_pCallbackEventUserContext;				// CCerasusDialog 窗口事件回调用户参数
 
+	vector<int> m_vecTextures;			// CCerasusDialog 纹理数组
+	vector<int> m_vecFonts;				// CCerasusDialog 字体数组
+
+	vector<CCerasusControl*> m_vecControls;			// CCerasusDialog 窗口控件数组
+	//vector<DXUTElementHolder*> m_DefaultElements;
+
+	//CCerasusElement m_CapElement;		// CCerasusDialog 标题元素
+
+	CCerasusDialog* m_pNextDialog;		// CCerasusDialog 下一个窗口指针
+	CCerasusDialog* m_pPrevDialog;		// CCerasusDialog 上一个窗口指针
+
 public:
-	CCerasusDialog();
-	~CCerasusDialog();
+	bool m_bNonUserEvents;				// CCerasusDialog 用户事件标志
+	bool m_bKeyboardInput;				// CCerasusDialog 键盘输入标志
+	bool m_bMouseInput;					// CCerasusDialog 鼠标输入标志
+
+public:
+	CCerasusDialog();					// CCerasusDialog 构造函数
+	~CCerasusDialog();					// CCerasusDialog 析构函数
 
 
 

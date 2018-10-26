@@ -43,6 +43,18 @@ CCerasusDialog::CCerasusDialog()
 	m_pCallbackEvent = NULL;
 	m_pCallbackEventUserContext = NULL;
 
+	m_fTimeLastRefresh = 0;
+
+	m_pControlMouseOver = NULL;
+
+	m_pNextDialog = this;
+	m_pPrevDialog = this;
+
+	m_nDefaultControlID = 0xffff;
+	m_bNonUserEvents = false;
+	m_bKeyboardInput = false;
+	m_bMouseInput = true;
+
 }
 
 //------------------------------------------------------------------

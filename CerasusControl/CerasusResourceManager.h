@@ -28,7 +28,7 @@
 #define CERASUSRESOURCEMANAGER_CALLMETHOD	__stdcall
 
 //Class Definition
-class CERASUSRESOURCEMANAGER_API CCerasusResourceManager
+class CCerasusResourceManager
 {
 protected:
 	LPDIRECT3DDEVICE9	m_pD3D9Device;				// D3D9‰÷»æ…Ë±∏

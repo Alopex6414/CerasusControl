@@ -61,6 +61,14 @@ enum CERASUS_CONTROL_STATE
 	CERASUS_STATE_PRESSED,
 };
 
+//Struct Definition
+
+//Class Definition
+class CCerasusDialog;
+class CCerasusControl;
+class CCerasusStatic;
+class CCerasusButton;
+class CCerasusResourceManager;
 
 #endif // !__CERASUSUICOMMON_H_
 

@@ -29,7 +29,7 @@
 #define CERASUSBUTTON_CALLMODE	__stdcall
 
 //Class Definition
-class CERASUSBUTTON_API CCerasusButton : public CCerasusStatic
+class CCerasusButton : public CCerasusStatic
 {
 protected:
 	bool m_bPressed;

@@ -31,7 +31,7 @@
 typedef VOID(CALLBACK*LPCALLBACKCERASUSGUIEVENT)(UINT nEvent, int nControlID, CCerasusControl* pControl, void* pUserContext);
 
 //Class Definition
-class CERASUSDIALOG_API CCerasusDialog
+class CCerasusDialog
 {
 	friend class CCerasusResourceManager;
 
@@ -89,7 +89,7 @@ public:
 	CCerasusDialog();					// CCerasusDialog 构造函数
 	~CCerasusDialog();					// CCerasusDialog 析构函数
 
-
+	void	RemoveAllControls();		// CCerasusDialog 移除所有控件
 
 };
 

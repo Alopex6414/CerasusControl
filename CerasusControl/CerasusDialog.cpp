@@ -13,6 +13,11 @@
 
 // CreasusUI 渲染对话框类(UI)
 
+// Class Static Var
+double				CCerasusDialog::s_fTimeRefresh;
+CCerasusControl*	CCerasusDialog::s_pControlFocus;
+CCerasusControl*	CCerasusDialog::s_pControlPressed;
+
 //------------------------------------------------------------------
 // @Function:	 CCerasusDialog()
 // @Purpose: CCerasusDialog构造函数
@@ -66,4 +71,19 @@ CCerasusDialog::CCerasusDialog()
 //------------------------------------------------------------------
 CCerasusDialog::~CCerasusDialog()
 {
+}
+
+//------------------------------------------------------------------
+// @Function:	 RemoveAllControls()
+// @Purpose: CCerasusDialog移除所有控件
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+void CCerasusDialog::RemoveAllControls()
+{
+	if (s_pControlFocus && s_pControlFocus->m_pDialog == this)
+		s_pControlFocus = NULL;
+	if (s_pControlPressed && s_pControlPressed->m_pDialog == this)
+		s_pControlPressed = NULL;
 }

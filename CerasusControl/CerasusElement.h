@@ -37,6 +37,13 @@ public:
 
 };
 
+//Struct Definition
+struct CerasusElementHolder
+{
+	UINT nControlType;
+	UINT iElement;
+	CCerasusElement Element;
+};
 
 
 #endif // !__CERASUSELEMENT_H_

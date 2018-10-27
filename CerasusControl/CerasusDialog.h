@@ -16,6 +16,7 @@
 
 //Include Direct Common Header File
 #include "CerasusUICommon.h"
+#include "CerasusResourceManager.h"
 #include "CerasusControl.h"
 
 //Macro Definition
@@ -73,9 +74,9 @@ private:
 	vector<int> m_vecFonts;				// CCerasusDialog 字体数组
 
 	vector<CCerasusControl*> m_vecControls;			// CCerasusDialog 窗口控件数组
-	//vector<DXUTElementHolder*> m_DefaultElements;
+	vector<CerasusElementHolder*> m_vecDefaultElements;	// CCerasusDialog 窗口默认元素
 
-	//CCerasusElement m_CapElement;		// CCerasusDialog 标题元素
+	CCerasusElement m_CapElement;		// CCerasusDialog 标题元素
 
 	CCerasusDialog* m_pNextDialog;		// CCerasusDialog 下一个窗口指针
 	CCerasusDialog* m_pPrevDialog;		// CCerasusDialog 上一个窗口指针
@@ -89,7 +90,22 @@ public:
 	CCerasusDialog();					// CCerasusDialog 构造函数
 	~CCerasusDialog();					// CCerasusDialog 析构函数
 
+	void	Init(CCerasusResourceManager* pManager, bool bRegisterDialog = true);
+
 	void	RemoveAllControls();		// CCerasusDialog 移除所有控件
+
+	HRESULT			SetDefaultElement(UINT nControlType, UINT iElement, CCerasusElement* pElement);			// CCerasusDialog 设置默认元素
+	CCerasusElement*GetDefaultElement(UINT nControlType, UINT iElement);									// CCerasusDialog 获取默认元素
+
+	HRESULT			SetFont(UINT Index, LPWSTR strFontName, int nFontSize);			// CCerasusDialog 设置字体元素
+	DirectFont*		GetFont(UINT Index);											// CCerasusDialog 获取字体元素
+
+	HRESULT			SetTexture(UINT Index, CUUint sUnit);							// CCerasusDialog 设置纹理元素(文件)
+	HRESULT			SetTexture(UINT Index, CUUintEx sUnit);							// CCerasusDialog 设置纹理元素(内存)
+	CCerasusUnit*	GetTexture(UINT Index);											// CCerasusDialog 获取纹理元素
+
+private:
+	void	InitDefaultElements();		// CCerasusDialog 初始化默认元素
 
 };
 

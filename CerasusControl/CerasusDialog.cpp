@@ -18,7 +18,7 @@ double				CCerasusDialog::s_fTimeRefresh = 0.0f;
 CCerasusControl*	CCerasusDialog::s_pControlFocus = NULL;			// 当前有焦点的控件
 CCerasusControl*	CCerasusDialog::s_pControlPressed = NULL;		// 当前被按压的控件
 
-extern HWND g_hWnd;
+//extern HWND g_hWnd;
 
 //------------------------------------------------------------------
 // @Function:	 CCerasusDialog()
@@ -175,7 +175,7 @@ bool CCerasusDialog::MsgProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 				mousePoint.y >= m_nY && mousePoint.y < m_nY + m_nCaptionHeight)
 			{
 				m_bDrag = true;
-				SetCapture(g_hWnd);
+				//SetCapture(g_hWnd);		// 需要窗口句柄
 				return true;
 			}
 		}
@@ -369,6 +369,105 @@ bool CCerasusDialog::MsgProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 }
 
 //------------------------------------------------------------------
+// @Function:	 AddStatic()
+// @Purpose: CCerasusDialog窗口添加静态控件
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+HRESULT CCerasusDialog::AddStatic(int ID, LPCWSTR strText, int x, int y, int width, int height, bool bIsDefault, CCerasusStatic ** ppCreated)
+{
+	HRESULT hr = S_OK;
+
+	CCerasusStatic* pStatic = new CCerasusStatic(this);
+
+	if (ppCreated != NULL)
+	{
+		*ppCreated = pStatic;
+	}
+
+	if (pStatic == NULL)
+	{
+		return E_OUTOFMEMORY;
+	}
+
+	hr = AddControl(pStatic);
+	if (FAILED(hr))
+	{
+		return hr;
+	}
+
+	pStatic->SetID(ID);
+	pStatic->SetText(strText);
+	pStatic->SetLocation(x, y);
+	pStatic->SetSize(width, height);
+	pStatic->m_bIsDefault = bIsDefault;
+
+	return S_OK;
+}
+
+//------------------------------------------------------------------
+// @Function:	 AddStatic()
+// @Purpose: CCerasusDialog窗口添加控件基类
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+HRESULT CCerasusDialog::AddControl(CCerasusControl * pControl)
+{
+	HRESULT hr = S_OK;
+
+	// 初始化控件
+	hr = InitControl(pControl);
+	if (FAILED(hr))
+	{
+		return DXTRACE_ERR(L"CCerasusDialog::InitControl", hr);
+	}
+
+	// 添加控件向量
+	m_vecControls.push_back(pControl);
+
+	return S_OK;
+}
+
+//------------------------------------------------------------------
+// @Function:	 InitControl()
+// @Purpose: CCerasusDialog窗口初始化控件
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+HRESULT CCerasusDialog::InitControl(CCerasusControl * pControl)
+{
+	HRESULT hr;
+
+	// 检测控件基类的指针是否为空
+	if (pControl == NULL)
+	{
+		return E_INVALIDARG;
+	}
+
+	// 在控件向量的最后一个添加控件
+	pControl->m_nIndex = m_vecControls.size();
+
+	// 从默认元素中挑选合适的控件资源
+	for (int i = 0; i < m_vecDefaultElements.size(); ++i)
+	{
+		// 控件类型相同!!
+		if (m_vecDefaultElements[i]->nControlType == pControl->GetType())
+		{
+			// 设置控件的元素
+			pControl->SetElement(m_vecDefaultElements[i]->iElement, &m_vecDefaultElements[i]->Element);
+		}
+	}
+
+	// 控件初始化函数响应
+	VERIFY(pControl->OnInit());
+
+	return S_OK;
+}
+
+//------------------------------------------------------------------
 // @Function:	 GetNextControl()
 // @Purpose: CCerasusDialog获取窗口下一个控件指针
 // @Since: v1.00a
@@ -439,6 +538,67 @@ void CCerasusDialog::RemoveAllControls()
 	}
 
 	m_vecControls.clear();
+}
+
+//------------------------------------------------------------------
+// @Function:	 SetCallback()
+// @Purpose: CCerasusDialog设置回调函数
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+void CCerasusDialog::SetCallback(LPCALLBACKCERASUSGUIEVENT pCallback, void * pUserContext)
+{
+	m_pCallbackEvent = pCallback;
+	m_pCallbackEventUserContext = pUserContext;
+}
+
+//------------------------------------------------------------------
+// @Function:	 EnableNonUserEvents()
+// @Purpose: CCerasusDialog使能无用户事件
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+void CCerasusDialog::EnableNonUserEvents(bool bEnable)
+{
+	m_bNonUserEvents = bEnable;
+}
+
+//------------------------------------------------------------------
+// @Function:	 EnableKeyboardInput()
+// @Purpose: CCerasusDialog使能键盘输入
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+void CCerasusDialog::EnableKeyboardInput(bool bEnable)
+{
+	m_bKeyboardInput = bEnable;
+}
+
+//------------------------------------------------------------------
+// @Function:	 EnableMouseInput()
+// @Purpose: CCerasusDialog使能鼠标输入
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+void CCerasusDialog::EnableMouseInput(bool bEnable)
+{
+	m_bMouseInput = bEnable;
+}
+
+//------------------------------------------------------------------
+// @Function:	 IsKeyboardInputEnabled()
+// @Purpose: CCerasusDialog判断是否渐染输入使能
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+bool CCerasusDialog::IsKeyboardInputEnabled() const
+{
+	return m_bKeyboardInput;
 }
 
 //------------------------------------------------------------------
@@ -617,6 +777,56 @@ CCerasusUnit * CCerasusDialog::GetTexture(UINT Index)
 }
 
 //------------------------------------------------------------------
+// @Function:	 SendEvent()
+// @Purpose: CCerasusDialog设置控件事件
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+void CCerasusDialog::SendEvent(UINT nEvent, bool bTriggeredByUser, CCerasusControl * pControl)
+{
+	if (m_pCallbackEvent == NULL)
+	{
+		return;
+	}
+
+	if (!bTriggeredByUser && !m_bNonUserEvents)
+	{
+		return;
+	}
+
+	m_pCallbackEvent(nEvent, pControl->GetID(), pControl, m_pCallbackEventUserContext);
+}
+
+//------------------------------------------------------------------
+// @Function:	 RequestFocus()
+// @Purpose: CCerasusDialog请求获取焦点
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+void CCerasusDialog::RequestFocus(CCerasusControl * pControl)
+{
+	if (s_pControlFocus == pControl)
+	{
+		return;
+	}
+
+	if (!pControl->CanHaveFocus())
+	{
+		return;
+	}
+
+	if (s_pControlFocus)
+	{
+		s_pControlFocus->OnFocusOut();
+	}
+
+	pControl->OnFocusIn();
+	s_pControlFocus = pControl;
+}
+
+//------------------------------------------------------------------
 // @Function:	 DrawText()
 // @Purpose: CCerasusDialog绘制文本
 // @Since: v1.00a
@@ -673,6 +883,24 @@ HRESULT CCerasusDialog::DrawText9(LPCWSTR strText, CCerasusElement * pElement, R
 	}
 
 	return S_OK;
+}
+
+//------------------------------------------------------------------
+// @Function:	 ClearFocus()
+// @Purpose: CCerasusDialog清除控件焦点
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+void __stdcall CCerasusDialog::ClearFocus()
+{
+	if (s_pControlFocus)
+	{
+		s_pControlFocus->OnFocusOut();
+		s_pControlFocus = NULL;
+	}
+
+	ReleaseCapture();
 }
 
 //------------------------------------------------------------------

@@ -18,6 +18,7 @@
 #include "CerasusUICommon.h"
 #include "CerasusResourceManager.h"
 #include "CerasusControl.h"
+#include "CerasusStatic.h"
 
 //Macro Definition
 #ifdef	CERASUSCONTROL_EXPORTS
@@ -96,10 +97,21 @@ public:
 
 	bool	MsgProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);									// CCerasusDialog 窗口消息处理
 
+	HRESULT AddStatic(int ID, LPCWSTR strText, int x, int y, int width, int height, bool bIsDefault = false, CCerasusStatic** ppCreated = NULL);			// CCerasusDialog 窗口添加静态控件
+
+	HRESULT	AddControl(CCerasusControl* pControl);									// CCerasusDialog 窗口添加控件
+	HRESULT	InitControl(CCerasusControl* pControl);									// CCerasusDialog 窗口初始化控件
+
 	static CCerasusControl* WINAPI GetNextControl(CCerasusControl* pControl);		// CCerasusDialog 获取窗口下一个控件指针
 	static CCerasusControl* WINAPI GetPrevControl(CCerasusControl* pControl);		// CCerasusDialog 获取窗口上一个控件指针
 
 	void	RemoveAllControls();		// CCerasusDialog 移除所有控件
+
+	void	SetCallback(LPCALLBACKCERASUSGUIEVENT pCallback, void* pUserContext = NULL);					// CCerasusDialog 设置事件回调函数
+	void	EnableNonUserEvents(bool bEnable);																// CCerasusDialog 使能无用户事件
+	void    EnableKeyboardInput(bool bEnable);																// CCerasusDialog 使能键盘输入
+	void    EnableMouseInput(bool bEnable);																	// CCerasusDialog 使能鼠标输入
+	bool    IsKeyboardInputEnabled() const;																	// CCerasusDialog 判断键盘是否使能
 
 	CCerasusControl*GetControlAtPoint(POINT pt);									// CCerasusDialog 获取鼠标所在的控件指针
 
@@ -113,8 +125,13 @@ public:
 	HRESULT			SetTexture(UINT Index, CUUintEx sUnit);							// CCerasusDialog 设置纹理元素(内存)
 	CCerasusUnit*	GetTexture(UINT Index);											// CCerasusDialog 获取纹理元素
 
+	void			SendEvent(UINT nEvent, bool bTriggeredByUser, CCerasusControl* pControl);											// CCerasusDialog 发送事件
+	void			RequestFocus(CCerasusControl* pControl);																			// CCerasusDialog 请求焦点
+
 	HRESULT			DrawText(LPCWSTR strText, CCerasusElement* pElement, RECT* prcDest, bool bShadow = false, int nCount = -1);			// CCerasusDialog 绘制文本
 	HRESULT			DrawText9(LPCWSTR strText, CCerasusElement* pElement, RECT* prcDest, bool bShadow = false, int nCount = -1);		// CCerasusDialog 绘制文本
+
+	static void WINAPI	ClearFocus();	// CCerasusDialog 清除控件焦点
 
 private:
 	void	InitDefaultElements();		// CCerasusDialog 初始化默认元素

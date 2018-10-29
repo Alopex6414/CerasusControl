@@ -35,9 +35,9 @@ protected:
 	bool m_bPressed;
 
 public:
-	CCerasusButton();			// CCerasusButton 构造函数
+	CCerasusButton(CCerasusDialog* pDialog = NULL);						// CCerasusButton 构造函数
 
-	virtual void	CERASUSBUTTON_CALLMODE Render();					// CCerasusControl 渲染控件
+	virtual void	CERASUSBUTTON_CALLMODE Render(float fElapsedTime);	// CCerasusControl 渲染控件
 
 	virtual bool	CERASUSBUTTON_CALLMODE HandleKeyboard(UINT uMsg, WPARAM wParam, LPARAM lParam);				// CCerasusButton 键盘消息处理
 	virtual bool	CERASUSBUTTON_CALLMODE HandleMouse(UINT uMsg, POINT pt, WPARAM wParam, LPARAM lParam);		// CCerasusButton 鼠标消息处理

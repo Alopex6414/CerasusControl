@@ -113,6 +113,9 @@ public:
 	HRESULT			SetTexture(UINT Index, CUUintEx sUnit);							// CCerasusDialog 设置纹理元素(内存)
 	CCerasusUnit*	GetTexture(UINT Index);											// CCerasusDialog 获取纹理元素
 
+	HRESULT			DrawText(LPCWSTR strText, CCerasusElement* pElement, RECT* prcDest, bool bShadow = false, int nCount = -1);			// CCerasusDialog 绘制文本
+	HRESULT			DrawText9(LPCWSTR strText, CCerasusElement* pElement, RECT* prcDest, bool bShadow = false, int nCount = -1);		// CCerasusDialog 绘制文本
+
 private:
 	void	InitDefaultElements();		// CCerasusDialog 初始化默认元素
 

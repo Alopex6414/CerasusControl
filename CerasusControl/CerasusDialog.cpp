@@ -617,6 +617,65 @@ CCerasusUnit * CCerasusDialog::GetTexture(UINT Index)
 }
 
 //------------------------------------------------------------------
+// @Function:	 DrawText()
+// @Purpose: CCerasusDialog绘制文本
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+HRESULT CCerasusDialog::DrawText(LPCWSTR strText, CCerasusElement * pElement, RECT * prcDest, bool bShadow, int nCount)
+{
+	return DrawText9(strText, pElement, prcDest, bShadow, nCount);
+}
+
+//------------------------------------------------------------------
+// @Function:	 DrawText9()
+// @Purpose: CCerasusDialog绘制文本
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+HRESULT CCerasusDialog::DrawText9(LPCWSTR strText, CCerasusElement * pElement, RECT * prcDest, bool bShadow, int nCount)
+{
+	HRESULT hr = S_OK;
+
+	if (pElement->m_FontColor.Current.a == 0)
+	{
+		return S_OK;
+	}
+
+	RECT rcScreen = *prcDest;
+	OffsetRect(&rcScreen, m_nX, m_nY);
+
+	if (m_bCaption)
+	{
+		OffsetRect(&rcScreen, 0, m_nCaptionHeight);
+	}
+
+	DirectFont* pFontNode = GetFont(pElement->m_iFont);
+
+	if (bShadow)
+	{
+		RECT rcShadow = rcScreen;
+		OffsetRect(&rcShadow, 1, 1);
+		hr = pFontNode->DirectFontGetFont()->DrawText(NULL, strText, nCount, &rcShadow, pElement->m_dwTextureFormat, D3DCOLOR_ARGB(DWORD(pElement->m_FontColor.Current.a * 255), 0, 0, 0));
+		if (FAILED(hr))
+		{
+			return hr;
+		}
+
+	}
+
+	hr = pFontNode->DirectFontGetFont()->DrawText(NULL, strText, nCount, &rcScreen, pElement->m_dwTextureFormat, pElement->m_FontColor.Current);
+	if (FAILED(hr))
+	{
+		return hr;
+	}
+
+	return S_OK;
+}
+
+//------------------------------------------------------------------
 // @Function:	 InitDefaultElements()
 // @Purpose: CCerasusDialog初始化默认元素
 // @Since: v1.00a

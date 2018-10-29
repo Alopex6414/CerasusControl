@@ -90,7 +90,9 @@ public:
 	CCerasusDialog();					// CCerasusDialog 构造函数
 	~CCerasusDialog();					// CCerasusDialog 析构函数
 
-	void	Init(CCerasusResourceManager* pManager, bool bRegisterDialog = true);
+	void	Init(CCerasusResourceManager* pManager, bool bRegisterDialog = true);							// CCerasusDialog 初始化窗口
+	void	Init(CCerasusResourceManager* pManager, bool bRegisterDialog, CUUint sUnit);					// CCerasusDialog 初始化窗口(文件加载)
+	void	Init(CCerasusResourceManager* pManager, bool bRegisterDialog, CUUintEx sUnit);					// CCerasusDialog 初始化窗口(内存加载)
 
 	void	RemoveAllControls();		// CCerasusDialog 移除所有控件
 

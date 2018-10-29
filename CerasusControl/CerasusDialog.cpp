@@ -100,6 +100,49 @@ void CCerasusDialog::Init(CCerasusResourceManager * pManager, bool bRegisterDial
 		m_pManager->RegisterDialog(this);
 	}
 
+	CUUintEx sUnit = { 0 };
+	m_pManager->AddTexture(sUnit);
+	InitDefaultElements();
+}
+
+//------------------------------------------------------------------
+// @Function:	 Init()
+// @Purpose: CCerasusDialog初始化窗口
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+void CCerasusDialog::Init(CCerasusResourceManager * pManager, bool bRegisterDialog, CUUint sUnit)
+{
+	m_pManager = pManager;
+
+	if (bRegisterDialog)
+	{
+		m_pManager->RegisterDialog(this);
+	}
+
+	m_pManager->AddTexture(sUnit);
+	InitDefaultElements();
+}
+
+//------------------------------------------------------------------
+// @Function:	 Init()
+// @Purpose: CCerasusDialog初始化窗口
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+void CCerasusDialog::Init(CCerasusResourceManager * pManager, bool bRegisterDialog, CUUintEx sUnit)
+{
+	m_pManager = pManager;
+
+	if (bRegisterDialog)
+	{
+		m_pManager->RegisterDialog(this);
+	}
+
+	m_pManager->AddTexture(sUnit);
+	InitDefaultElements();
 }
 
 //------------------------------------------------------------------
@@ -359,6 +402,19 @@ void CCerasusDialog::InitDefaultElements()
 
 	SetDefaultElement(CERASUS_CONTROL_RADIOBUTTON, 1, &Element);
 
+	// CCerasusComboBox -- 主要
+	SetRect(&rcTexture, 7, 81, 247, 123);
+	Element.SetTexture(0, &rcTexture);
+	Element.SetFont(0);
+	Element.m_TextureColor.States[CERASUS_STATE_NORMAL] = D3DCOLOR_ARGB(150, 200, 200, 200);
+	Element.m_TextureColor.States[CERASUS_STATE_FOCUS] = D3DCOLOR_ARGB(170, 230, 230, 230);
+	Element.m_TextureColor.States[CERASUS_STATE_DISABLED] = D3DCOLOR_ARGB(70, 200, 200, 200);
+	Element.m_FontColor.States[CERASUS_STATE_MOUSEOVER] = D3DCOLOR_ARGB(255, 0, 0, 0);
+	Element.m_FontColor.States[CERASUS_STATE_PRESSED] = D3DCOLOR_ARGB(255, 0, 0, 0);
+	Element.m_FontColor.States[CERASUS_STATE_DISABLED] = D3DCOLOR_ARGB(200, 200, 200, 200);
+
+	SetDefaultElement(CERASUS_CONTROL_COMBOBOX, 0, &Element);
+
 	// CCerasusComboBox -- 下拉框
 	SetRect(&rcTexture, 98, 189, 151, 238);
 	Element.SetTexture(0, &rcTexture);
@@ -375,5 +431,116 @@ void CCerasusDialog::InitDefaultElements()
 	Element.SetFont(0, D3DCOLOR_ARGB(255, 0, 0, 0), DT_LEFT | DT_TOP);
 
 	SetDefaultElement(CERASUS_CONTROL_COMBOBOX, 2, &Element);
+
+	// CCerasusComboBox -- 选中
+	SetRect(&rcTexture, 12, 163, 239, 183);
+	Element.SetTexture(0, &rcTexture);
+	Element.SetFont(0, D3DCOLOR_ARGB(255, 255, 255, 255), DT_LEFT | DT_TOP);
+
+	SetDefaultElement(CERASUS_CONTROL_COMBOBOX, 3, &Element);
+
+	// CCerasusSlider -- Track
+	SetRect(&rcTexture, 1, 187, 93, 228);
+	Element.SetTexture(0, &rcTexture);
+	Element.m_TextureColor.States[CERASUS_STATE_NORMAL] = D3DCOLOR_ARGB(150, 255, 255, 255);
+	Element.m_TextureColor.States[CERASUS_STATE_FOCUS] = D3DCOLOR_ARGB(200, 255, 255, 255);
+	Element.m_TextureColor.States[CERASUS_STATE_DISABLED] = D3DCOLOR_ARGB(70, 255, 255, 255);
+
+	SetDefaultElement(CERASUS_CONTROL_SLIDER, 0, &Element);
+
+	// CCerasusSlider -- Button
+	SetRect(&rcTexture, 151, 193, 192, 234);
+	Element.SetTexture(0, &rcTexture);
+
+	SetDefaultElement(CERASUS_CONTROL_SLIDER, 1, &Element);
+
+	// CCerasusScrollBar -- Track
+	int nScrollBarStartX = 196;
+	int nScrollBarStartY = 191;
+	SetRect(&rcTexture, nScrollBarStartX + 0, nScrollBarStartY + 21, nScrollBarStartX + 22, nScrollBarStartY + 32);
+	Element.SetTexture(0, &rcTexture);
+	Element.m_TextureColor.States[CERASUS_STATE_DISABLED] = D3DCOLOR_ARGB(255, 200, 200, 200);
+
+	SetDefaultElement(CERASUS_CONTROL_SCROLLBAR, 0, &Element);
+
+	// CCerasusScrollBar -- Up Arrow
+	SetRect(&rcTexture, nScrollBarStartX + 0, nScrollBarStartY + 1, nScrollBarStartX + 22, nScrollBarStartY + 21);
+	Element.SetTexture(0, &rcTexture);
+	Element.m_TextureColor.States[CERASUS_STATE_DISABLED] = D3DCOLOR_ARGB(255, 200, 200, 200);
+
+	SetDefaultElement(CERASUS_CONTROL_SCROLLBAR, 1, &Element);
+
+	// CCerasusScrollBar -- Down Arrow
+	SetRect(&rcTexture, nScrollBarStartX + 0, nScrollBarStartY + 32, nScrollBarStartX + 22, nScrollBarStartY + 53);
+	Element.SetTexture(0, &rcTexture);
+	Element.m_TextureColor.States[CERASUS_STATE_DISABLED] = D3DCOLOR_ARGB(255, 200, 200, 200);
+
+	SetDefaultElement(CERASUS_CONTROL_SCROLLBAR, 2, &Element);
+
+	// CCerasusScrollBar - Button
+	SetRect(&rcTexture, 220, 192, 238, 234);
+	Element.SetTexture(0, &rcTexture);
+
+	SetDefaultElement(CERASUS_CONTROL_SCROLLBAR, 3, &Element);
+
+	//-------------------------------------
+	// CCerasusEditBox
+	//-------------------------------------
+	// Element assignment:
+	//   0 - text area
+	//   1 - top left border
+	//   2 - top border
+	//   3 - top right border
+	//   4 - left border
+	//   5 - right border
+	//   6 - lower left border
+	//   7 - lower border
+	//   8 - lower right border
+
+	Element.SetFont(0, D3DCOLOR_ARGB(255, 0, 0, 0), DT_LEFT | DT_TOP);
+
+	// Assign the style
+	SetRect(&rcTexture, 14, 90, 241, 113);
+	Element.SetTexture(0, &rcTexture);
+	SetDefaultElement(CERASUS_CONTROL_EDITBOX, 0, &Element);
+	SetRect(&rcTexture, 8, 82, 14, 90);
+	Element.SetTexture(0, &rcTexture);
+	SetDefaultElement(CERASUS_CONTROL_EDITBOX, 1, &Element);
+	SetRect(&rcTexture, 14, 82, 241, 90);
+	Element.SetTexture(0, &rcTexture);
+	SetDefaultElement(CERASUS_CONTROL_EDITBOX, 2, &Element);
+	SetRect(&rcTexture, 241, 82, 246, 90);
+	Element.SetTexture(0, &rcTexture);
+	SetDefaultElement(CERASUS_CONTROL_EDITBOX, 3, &Element);
+	SetRect(&rcTexture, 8, 90, 14, 113);
+	Element.SetTexture(0, &rcTexture);
+	SetDefaultElement(CERASUS_CONTROL_EDITBOX, 4, &Element);
+	SetRect(&rcTexture, 241, 90, 246, 113);
+	Element.SetTexture(0, &rcTexture);
+	SetDefaultElement(CERASUS_CONTROL_EDITBOX, 5, &Element);
+	SetRect(&rcTexture, 8, 113, 14, 121);
+	Element.SetTexture(0, &rcTexture);
+	SetDefaultElement(CERASUS_CONTROL_EDITBOX, 6, &Element);
+	SetRect(&rcTexture, 14, 113, 241, 121);
+	Element.SetTexture(0, &rcTexture);
+	SetDefaultElement(CERASUS_CONTROL_EDITBOX, 7, &Element);
+	SetRect(&rcTexture, 241, 113, 246, 121);
+	Element.SetTexture(0, &rcTexture);
+	SetDefaultElement(CERASUS_CONTROL_EDITBOX, 8, &Element);
+
+	// CCerasusListBox - Main
+	SetRect(&rcTexture, 13, 123, 241, 160);
+	Element.SetTexture(0, &rcTexture);
+	Element.SetFont(0, D3DCOLOR_ARGB(255, 0, 0, 0), DT_LEFT | DT_TOP);
+
+	SetDefaultElement(CERASUS_CONTROL_LISTBOX, 0, &Element);
+
+	// CCerasusListBox - Selection
+
+	SetRect(&rcTexture, 16, 166, 240, 183);
+	Element.SetTexture(0, &rcTexture);
+	Element.SetFont(0, D3DCOLOR_ARGB(255, 255, 255, 255), DT_LEFT | DT_TOP);
+
+	SetDefaultElement(CERASUS_CONTROL_LISTBOX, 1, &Element);
 
 }

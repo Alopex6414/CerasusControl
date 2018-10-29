@@ -9,6 +9,7 @@
 * @version	v1.00a
 * @date		2018-10-22	v1.00a	alopex	Create Project.
 */
+#include "CerasusDialog.h"
 #include "CerasusButton.h"
 
 // CreasusUI °´Å¥¿Ø¼þ(CCerasusButton)

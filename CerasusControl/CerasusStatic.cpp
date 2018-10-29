@@ -9,6 +9,7 @@
 * @version	v1.00a
 * @date		2018-10-19	v1.00a	alopex	Create Project.
 */
+#include "CerasusDialog.h"
 #include "CerasusStatic.h"
 
 // CreasusUI ¾²Ì¬¿Ø¼þ(CCerasusStatic)

@@ -16,7 +16,6 @@
 
 //Include CerasusUI Common Header File
 #include "CerasusUICommon.h"
-#include "CerasusDialog.h"
 #include "CerasusControl.h"
 
 //Macro Definition

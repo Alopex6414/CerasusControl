@@ -407,6 +407,45 @@ HRESULT CCerasusDialog::AddStatic(int ID, LPCWSTR strText, int x, int y, int wid
 }
 
 //------------------------------------------------------------------
+// @Function:	 AddButton()
+// @Purpose: CCerasusDialog窗口添加按钮控件
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+HRESULT CCerasusDialog::AddButton(int ID, LPCWSTR strText, int x, int y, int width, int height, UINT nHotkey, bool bIsDefault, CCerasusButton ** ppCreated)
+{
+	HRESULT hr = S_OK;
+
+	CCerasusButton* pButton = new CCerasusButton(this);
+
+	if (ppCreated != NULL)
+	{
+		*ppCreated = pButton;
+	}
+
+	if (pButton == NULL)
+	{
+		return E_OUTOFMEMORY;
+	}
+
+	hr = AddControl(pButton);
+	if (FAILED(hr))
+	{
+		return hr;
+	}
+
+	pButton->SetID(ID);
+	pButton->SetText(strText);
+	pButton->SetLocation(x, y);
+	pButton->SetSize(width, height);
+	pButton->SetHotkey(nHotkey);
+	pButton->m_bIsDefault = bIsDefault;
+
+	return S_OK;
+}
+
+//------------------------------------------------------------------
 // @Function:	 AddStatic()
 // @Purpose: CCerasusDialog窗口添加控件基类
 // @Since: v1.00a
@@ -439,8 +478,6 @@ HRESULT CCerasusDialog::AddControl(CCerasusControl * pControl)
 //------------------------------------------------------------------
 HRESULT CCerasusDialog::InitControl(CCerasusControl * pControl)
 {
-	HRESULT hr;
-
 	// 检测控件基类的指针是否为空
 	if (pControl == NULL)
 	{
@@ -465,6 +502,72 @@ HRESULT CCerasusDialog::InitControl(CCerasusControl * pControl)
 	VERIFY(pControl->OnInit());
 
 	return S_OK;
+}
+
+//------------------------------------------------------------------
+// @Function:	 GetStatic()
+// @Purpose: CCerasusDialog窗口获取静态控件
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+CCerasusStatic * CCerasusDialog::GetStatic(int ID)
+{
+	return (CCerasusStatic*)GetControl(ID, CERASUS_CONTROL_STATIC);
+}
+
+//------------------------------------------------------------------
+// @Function:	 GetButton()
+// @Purpose: CCerasusDialog窗口获取按钮控件
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+CCerasusButton * CCerasusDialog::GetButton(int ID)
+{
+	return (CCerasusButton*)GetControl(ID, CERASUS_CONTROL_BUTTON);
+}
+
+//------------------------------------------------------------------
+// @Function:	 GetControl()
+// @Purpose: CCerasusDialog窗口获取控件
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+CCerasusControl * CCerasusDialog::GetControl(int ID)
+{
+	for (auto iter = m_vecControls.begin(); iter != m_vecControls.end(); ++iter)
+	{
+		if ((*iter)->GetID() == ID)
+		{
+			return (*iter);
+		}
+		
+	}
+
+	return NULL;
+}
+
+//------------------------------------------------------------------
+// @Function:	 GetControl()
+// @Purpose: CCerasusDialog窗口获取控件
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+CCerasusControl * CCerasusDialog::GetControl(int ID, UINT nControlType)
+{
+	for (auto iter = m_vecControls.begin(); iter != m_vecControls.end(); ++iter)
+	{
+		if ((*iter)->GetID() == ID && (*iter)->GetType() == nControlType)
+		{
+			return (*iter);
+		}
+
+	}
+
+	return NULL;
 }
 
 //------------------------------------------------------------------
@@ -624,6 +727,64 @@ CCerasusControl * CCerasusDialog::GetControlAtPoint(POINT pt)
 	}
 
 	return NULL;
+}
+
+//------------------------------------------------------------------
+// @Function:	 GetControlEnabled()
+// @Purpose: CCerasusDialog获取控件使能
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+bool CCerasusDialog::GetControlEnabled(int ID)
+{
+	CCerasusControl* pControl = GetControl(ID);
+	if (pControl == NULL)
+	{
+		return false;
+	}
+
+	return pControl->GetEnabled();
+}
+
+//------------------------------------------------------------------
+// @Function:	 SetControlEnabled()
+// @Purpose: CCerasusDialog设置控件使能
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+void CCerasusDialog::SetControlEnabled(int ID, bool bEnabled)
+{
+	CCerasusControl* pControl = GetControl(ID);
+	if (pControl == NULL)
+	{
+		return;
+	}
+
+	pControl->SetEnabled(bEnabled);
+}
+
+//------------------------------------------------------------------
+// @Function:	 ClearRadioButtonGroup()
+// @Purpose: CCerasusDialog清除RadioButton组
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+void CCerasusDialog::ClearRadioButtonGroup(UINT nGroup)
+{
+}
+
+//------------------------------------------------------------------
+// @Function:	 ClearComboBox()
+// @Purpose: CCerasusDialog清除ComboBox
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+void CCerasusDialog::ClearComboBox(int ID)
+{
 }
 
 //------------------------------------------------------------------

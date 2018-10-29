@@ -94,7 +94,14 @@ public:
 	void	Init(CCerasusResourceManager* pManager, bool bRegisterDialog, CUUint sUnit);					// CCerasusDialog 初始化窗口(文件加载)
 	void	Init(CCerasusResourceManager* pManager, bool bRegisterDialog, CUUintEx sUnit);					// CCerasusDialog 初始化窗口(内存加载)
 
+	bool	MsgProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);									// CCerasusDialog 窗口消息处理
+
+	static CCerasusControl* WINAPI GetNextControl(CCerasusControl* pControl);		// CCerasusDialog 获取窗口下一个控件指针
+	static CCerasusControl* WINAPI GetPrevControl(CCerasusControl* pControl);		// CCerasusDialog 获取窗口上一个控件指针
+
 	void	RemoveAllControls();		// CCerasusDialog 移除所有控件
+
+	CCerasusControl*GetControlAtPoint(POINT pt);									// CCerasusDialog 获取鼠标所在的控件指针
 
 	HRESULT			SetDefaultElement(UINT nControlType, UINT iElement, CCerasusElement* pElement);			// CCerasusDialog 设置默认元素
 	CCerasusElement*GetDefaultElement(UINT nControlType, UINT iElement);									// CCerasusDialog 获取默认元素
@@ -108,6 +115,9 @@ public:
 
 private:
 	void	InitDefaultElements();		// CCerasusDialog 初始化默认元素
+
+	void	OnMouseMove(POINT pt);		// CCerasusDialog 鼠标移动
+	bool    OnCycleFocus(bool bForward);// CCerasusDialog 循环焦点
 
 };
 
